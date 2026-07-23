@@ -1,0 +1,340 @@
+/* ══════════════════════════════════════════════════════════════
+   FairTransition – Modern-Layer (Design Engineering)
+   Progressive Enhancement über style.css/journey.css:
+   · Lokale Variable Font (Bricolage Grotesque, OFL-1.1, 60 KB)
+   · CSS Scroll-driven Animations (Lesefortschritt, Parallax)
+   · View Transitions API für seitenübergreifende Übergänge
+   · @property-animierte Verläufe, color-mix(), text-wrap
+   · Filmkorn, Glas-Navigation, taktile Mikrointeraktionen
+   Jede Technik ist @supports-abgesichert; ohne Support bleibt
+   das bisherige Verhalten vollständig intakt.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── 1 · Typografie: lokale Variable Font für Headlines ── */
+@font-face{
+  font-family:"Bricolage Grotesque";
+  src:url("../fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight:200 800;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Bricolage Grotesque";
+  src:url("../fonts/bricolage-grotesque-latin-ext-wght-normal.woff2") format("woff2-variations");
+  font-weight:200 800;font-style:normal;font-display:swap;
+  unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+h1,h2,h3,.jr-h,.nav-logo,.logo,.ps-logo,.ps-h1{
+  font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:-0.015em;font-optical-sizing:auto;
+}
+h1,.jr-hero h1,.ps-h1{font-weight:750}
+h2,.jr-h{font-weight:680}
+@supports(text-wrap:balance){h1,h2,.jr-h,.section-title{text-wrap:balance}}
+@supports(text-wrap:pretty){p,.jr-lead,.section-lead{text-wrap:pretty}}
+
+/* ── 2 · Lesefortschritt (reines CSS, scroll-driven) ── */
+@supports(animation-timeline:scroll()){
+  body::before{
+    content:"";position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;
+    transform-origin:0 50%;transform:scaleX(0);
+    background:linear-gradient(90deg,var(--ochre),#e0c896);
+    animation:ft-progress linear both;animation-timeline:scroll(root);
+    pointer-events:none;
+  }
+  @keyframes ft-progress{to{transform:scaleX(1)}}
+}
+
+/* ── 3 · Seitenübergreifende View Transitions (MPA) ── */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:ft-vt-out .28s ease both}
+::view-transition-new(root){animation:ft-vt-in .34s ease both}
+@keyframes ft-vt-out{to{opacity:0;transform:translateY(-8px)}}
+@keyframes ft-vt-in{from{opacity:0;transform:translateY(10px)}}
+
+/* ── 4 · Lebendiger Hero-Verlauf (@property-animiert) ── */
+@property --ft-glow-x{syntax:"<percentage>";inherits:false;initial-value:80%}
+@property --ft-glow-y{syntax:"<percentage>";inherits:false;initial-value:10%}
+.jr-hero,.ps-page{position:relative}
+@supports(background:color-mix(in oklab,red,blue)){
+  .jr-hero::after,.ps-page::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(720px 480px at var(--ft-glow-x) var(--ft-glow-y),
+      color-mix(in oklab,var(--ochre) 16%,transparent),transparent 70%);
+    animation:ft-glow 16s ease-in-out infinite alternate;
+  }
+  @keyframes ft-glow{
+    0%{--ft-glow-x:82%;--ft-glow-y:8%}
+    50%{--ft-glow-x:68%;--ft-glow-y:34%}
+    100%{--ft-glow-x:86%;--ft-glow-y:22%}
+  }
+  .jr-hero>.container,.ps-page>*{position:relative;z-index:1}
+}
+
+/* ── 5 · Filmkorn (SVG-Turbulenz, statisch, GPU-günstig) ── */
+body::after{
+  content:"";position:fixed;inset:-50%;z-index:199;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.028;mix-blend-mode:overlay;
+}
+
+/* ── 6 · Glas-Navigation ── */
+@supports(backdrop-filter:blur(1px)){
+  #nav{
+    background:color-mix(in oklab,#152238 82%,transparent);
+    backdrop-filter:blur(14px) saturate(1.3);
+    -webkit-backdrop-filter:blur(14px) saturate(1.3);
+    border-bottom:1px solid color-mix(in oklab,var(--ochre) 18%,transparent);
+  }
+}
+.nav-links a{position:relative;text-decoration:none}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1.5px;
+  background:var(--ochre);transition:right .28s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{right:0}
+
+/* ── 7 · Taktile Buttons: Sheen + Mikro-Lift ── */
+.btn{position:relative;overflow:hidden;
+  transition:transform .22s cubic-bezier(.34,1.4,.64,1),box-shadow .22s ease}
+.btn::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.32) 50%,transparent 62%);
+  transform:translateX(-120%);transition:transform .55s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover::before{transform:translateX(120%)}
+.btn:active{transform:translateY(0) scale(.985);transition-duration:.08s}
+.btn-primary:hover{box-shadow:0 10px 28px color-mix(in oklab,var(--ochre) 45%,transparent)}
+:where(a,button,input,textarea,summary):focus-visible{
+  outline:2px solid var(--ochre);outline-offset:3px;border-radius:4px}
+
+/* ── 8 · Karten: Lift + Konturglühen ── */
+.jr-deep a,.jr-split-col,.jr-model-col,.jr-path-ge,.kontakt-card,.kontakt-cta-box{
+  transition:transform .3s cubic-bezier(.34,1.3,.64,1),box-shadow .3s ease,border-color .3s ease}
+.jr-split-col:hover,.jr-model-col:hover{
+  transform:translateY(-3px);
+  border-color:color-mix(in oklab,var(--ochre) 45%,#e3e7ec);
+  box-shadow:0 18px 44px rgba(10,18,32,.10)}
+.jr-deep a:hover{border-color:color-mix(in oklab,var(--ochre) 55%,#e3e7ec)}
+
+/* ── 9 · Dekorativer Medien-Parallax (nur ohne .jr-reveal) ── */
+@supports(animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .jr-hero .jr-media,.jr-invite-grid .jr-media{
+      animation:ft-drift linear both;
+      animation-timeline:view();animation-range:entry 0% exit 100%;
+    }
+    @keyframes ft-drift{from{transform:translateY(26px)}to{transform:translateY(-26px)}}
+  }
+}
+
+/* ── 10 · Feinschliff ── */
+::selection{background:color-mix(in oklab,var(--ochre) 80%,white);color:#1c2333}
+html{scrollbar-color:color-mix(in oklab,var(--ochre) 60%,#8a93a3) transparent;
+  scrollbar-width:thin}
+.jr-ph{backdrop-filter:none}
+.kicker,.jr-eyebrow{font-feature-settings:"case" 1}
+.jr-terms span,.jr-chips span{
+  transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.jr-terms span:hover{transform:translateY(-2px);border-color:var(--ochre)}
+.jr-chips span:hover{background:color-mix(in oklab,var(--ochre) 14%,#eef1f5)}
+
+/* ── 11 · Reduced Motion: alles Dekorative deaktivieren ── */
+@media (prefers-reduced-motion:reduce){
+  body::before{display:none}
+  .jr-hero::after,.ps-page::after{animation:none}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  .btn,.btn::before,.jr-deep a,.jr-split-col,.jr-model-col,
+  .jr-terms span,.jr-chips span,.nav-links a::after{transition:none}
+  .btn:hover{transform:none}
+}
+
+/* ══ Loop 3 · Editorialer Layer (Referenz-inspiriert, eigenständig) ══ */
+
+/* ── 12 · Hero: grössere Display-Skala + feines Linienraster ── */
+.jr-hero h1{font-size:clamp(2rem,4.8vw,3.5rem);line-height:1.08;font-weight:780}
+.jr-hero{--ft-grid:color-mix(in oklab,var(--ochre) 9%,transparent)}
+@supports(background:color-mix(in oklab,red,blue)){
+  .jr-hero .container{position:relative}
+  .jr-hero .container::before{
+    content:"";position:absolute;inset:-12vh -6vw;pointer-events:none;z-index:-1;
+    background:
+      linear-gradient(var(--ft-grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--ft-grid) 1px,transparent 1px);
+    background-size:88px 88px;
+    mask-image:radial-gradient(75% 65% at 42% 40%,#000 25%,transparent 78%);
+  }
+}
+
+/* ── 13 · Porträt: editorialer Monochrom-Blend ── */
+.jr-hero-media-wrap{position:relative}
+.jr-portrait{background:#0d1626}
+.jr-portrait img{
+  filter:grayscale(1) contrast(1.08) brightness(1.02);
+  object-position:top center;
+  mask-image:linear-gradient(180deg,#000 62%,transparent 97%),
+             linear-gradient(90deg,transparent 0%,#000 14%);
+  mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 97%);
+}
+.jr-portrait{box-shadow:0 30px 80px rgba(0,0,0,.45),
+  inset 0 0 0 1px color-mix(in oklab,var(--ochre) 22%,transparent)}
+.jr-portrait::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(200deg,transparent 55%,rgba(12,21,36,.85) 96%);
+}
+
+/* ── 14 · Fakt-Chip (reale Angabe aus der Gründergeschichte) ── */
+.jr-fact-chip{
+  position:absolute;left:-16%;bottom:9%;z-index:2;max-width:240px;
+  background:color-mix(in oklab,#0e1930 88%,transparent);
+  backdrop-filter:blur(10px);
+  border:1px solid color-mix(in oklab,var(--ochre) 35%,transparent);
+  border-radius:16px;padding:16px 18px;
+  box-shadow:0 18px 44px rgba(0,0,0,.4);
+}
+.jr-fact-chip strong{
+  display:block;font-family:"Bricolage Grotesque",system-ui,sans-serif;
+  font-size:1.9rem;font-weight:760;color:var(--ochre);line-height:1;margin-bottom:6px}
+.jr-fact-chip span{font-size:.8rem;line-height:1.5;color:rgba(255,255,255,.75)}
+@media (max-width:860px){
+  .jr-fact-chip{position:static;max-width:420px;margin:14px auto 0}
+}
+
+/* ── 15 · Dunkle Stationen als abgerundete Super-Panels ── */
+@media (min-width:861px){
+  .jr-dark,.jr-invite{
+    margin-inline:clamp(10px,1.8vw,26px);
+    border-radius:34px;
+  }
+}
+
+/* ── 16 · Footer: grosses geclipptes Wordmark ── */
+footer{position:relative;overflow:hidden}
+footer .container{position:relative;z-index:1}
+footer::after{
+  content:"fairtransition";
+  position:absolute;left:50%;bottom:-0.34em;transform:translateX(-50%);
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;
+  font-size:clamp(4.5rem,13.5vw,11.5rem);font-weight:800;letter-spacing:-.03em;
+  line-height:1;white-space:nowrap;pointer-events:none;user-select:none;
+  color:transparent;
+  -webkit-text-stroke:1px color-mix(in oklab,var(--ochre) 26%,transparent);
+}
+@supports not (-webkit-text-stroke:1px red){
+  footer::after{color:color-mix(in oklab,var(--ochre) 8%,transparent)}
+}
+footer .footer-bottom{margin-bottom:clamp(3rem,7vw,6.5rem)}
+
+/* ══ Loop 4 · WCAG-2.2-AA-Härtung (messbasiert) ══════════════ */
+:root{--ochre-deep:#7D6234} /* Ocker-Textvariante für helle Flächen: >=4.6:1 */
+
+/* Ocker-Text auf hellen Hintergründen abdunkeln */
+.kicker{color:var(--ochre-deep)}
+.sub-hero .kicker,.jr-dark .kicker,.jr-hero .kicker,.jr-invite .kicker,
+.jr-turn .kicker,footer .kicker{color:var(--ochre)}
+.jr-conf-open h3,.jr-path-ge h3{color:var(--ochre-deep)}
+.jr-fact-chip strong,.jr-eyebrow{color:var(--ochre)} /* dunkle Kontexte: ok (7:1) */
+
+/* Links auf hellen Flächen */
+.jr-light a:not(.btn),.jr-dim a:not(.btn),.kontakt-card a:not(.btn),
+.jr-agree a:not(.btn){color:var(--ochre-deep)}
+.jr-light a:not(.btn):hover,.jr-dim a:not(.btn):hover,
+.kontakt-card a:hover,.jr-agree a:hover{color:#5f4a24}
+
+/* Footer-Linkfarben anheben (4.29 -> ~9:1) */
+footer a{color:#CDD5E0}
+footer a:hover{color:var(--ochre-lt)}
+
+/* Produktionsbox-Dateipfad (3.76 -> ~5:1) */
+.jr-ph-file{color:#545C68}
+
+/* Prestart-Metazeilen (3.71 -> >=4.6) */
+.ps-micro,.ps-note{color:rgba(255,255,255,.78)}
+.ps-micro a{color:rgba(255,255,255,.85)}
+
+/* Sequenz-Ruhezustand: lesbar statt fast unsichtbar (.25 -> .45) */
+html.js .jr-seq p{opacity:.45}
+
+/* jr-invite-meta & jr-trust anheben */
+.jr-invite-meta{color:rgba(255,255,255,.78)}
+.jr-trust{color:rgba(255,255,255,.72)}
+
+/* prefers-contrast: Nutzerwunsch nach mehr Kontrast respektieren */
+@media (prefers-contrast:more){
+  :root{--gray:#3d4450;--ochre-deep:#5f4a24}
+  body::after{display:none} /* Filmkorn aus */
+  .jr-ph{border-color:#5b6470}
+}
+/* Loop 4c · Deterministische Linkfarben (keine inherit-Ketten) */
+main a:not(.btn){color:var(--ochre-deep)}
+main .sub-hero a:not(.btn),main .jr-hero a:not(.btn),main .jr-dark a:not(.btn),
+main .jr-invite a:not(.btn),main .jr-fact-chip a,
+main .jr-conf-closed a{color:var(--ochre)}
+main .sub-hero .breadcrumb a{color:rgba(255,255,255,.80)}
+.ps-page a:not(.btn){color:var(--ochre)}
+.ps-scroll a{color:rgba(255,255,255,.75)}
+.ps-footer a{color:#CDD5E0}
+footer a{color:#CDD5E0}
+footer a:hover{color:var(--ochre-lt)}
+.skip-link{color:#1C2333}
+.jr-compare .jr-path-ge h3{color:var(--ochre-deep)}
+.jr-ph .jr-ph-file{color:#545C68}
+.section-tag{color:var(--ochre-deep)}
+.sub-hero .section-tag,.jr-dark .section-tag,.jr-hero .section-tag,
+.jr-invite .section-tag,footer .section-tag{color:var(--ochre)}
+/* Loop 4d · Beim 4b-Cleanup verlorene Regeln, korrekt wiederhergestellt */
+.jr-light .jr-eyebrow,.jr-dim .jr-eyebrow{color:var(--ochre-deep)}
+.jr-conf .jr-conf-open h3,section .jr-conf-open h3{color:var(--ochre-deep)}
+.sub-hero .breadcrumb span{color:rgba(255,255,255,.85)}
+footer .footer-bottom a,footer .footer-col a{color:#CDD5E0}
+.pos-card h3{color:var(--ochre-deep)}
+/* Loop 4e · Wurzelfixe: späte style.css-Regeln deterministisch schlagen */
+a.btn.btn-primary,.kontakt-card a.btn,.modal-box a.btn{color:#1C2333}
+#assessment-cta{background:var(--blue-dk)}
+main .pos-card h3{color:var(--ochre-deep)}
+/* Loop 4f · Letzte Muster: tags & ghost-buttons auf hellen Flächen */
+.tag{color:var(--ochre-deep)}
+.jr-dark .tag,.sub-hero .tag,footer .tag{color:var(--ochre)}
+.btn-ghost{color:var(--ochre-deep);border-color:var(--ochre-deep)}
+.jr-dark .btn-ghost,.sub-hero .btn-ghost,.jr-invite .btn-ghost,
+.jr-hero .btn-ghost{color:var(--ochre);border-color:var(--ochre)}
+.leistung-card .tag{color:var(--ochre-deep)}
+
+/* ══ Loop 4 · WCAG-2.2-AA-Härtung (messbasiert) ══════════════ */
+/* Ocker als TEXT auf hellem Grund verfehlt AA (≈2.2:1).
+   --ochre-ink ist die lesbare Tinte für helle Kontexte;
+   auf dunklem Grund bleibt das originale Ocker (dort ≈7:1). */
+:root{--ochre-ink:#7E6130}
+.kicker,.jr-eyebrow,.jr-conf-open h3,.jr-path-ge h3,
+.jr-agree a,.kontakt-card a,.card h3,.leistung-card h3{color:var(--ochre-ink)}
+:is(#nav,.jr-hero,.jr-dark,.jr-invite,.jr-turn,.sub-hero,.ps-page,footer,
+    .kontakt-cta-box,.jr-conf-closed,.jr-path-re,.jr-fact-chip)
+  :is(.kicker,.jr-eyebrow,h3,a:not(.btn)){--_dark-ctx:1}
+:is(#nav,.jr-hero,.jr-dark,.jr-invite,.sub-hero,.ps-page,
+    .kontakt-cta-box,.jr-fact-chip) .kicker,
+:is(.jr-hero,.jr-dark,.jr-invite,.jr-turn) .jr-eyebrow,
+.kontakt-cta-box h3{color:var(--ochre)}
+footer a{color:rgba(255,255,255,.85)}
+.kontakt-cta-box p{color:rgba(255,255,255,.85)}
+footer .footer-bottom, footer .footer-bottom a{color:rgba(255,255,255,.78)}
+
+/* ══ Loop · Bildband für Unterseiten (Bildpaket 2026-07-19) ══
+   Ruhiges Vollbreiten-Bild direkt unter dem sub-hero. Editoriale
+   Anmutung, dezenter Navy-Verlauf an den Kanten für Textnähe. */
+.ft-band{position:relative;width:100%;margin:0;background:#0d1626;overflow:hidden}
+.ft-band img{display:block;width:100%;height:clamp(220px,34vw,440px);
+  object-fit:cover;object-position:center}
+.ft-band::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(13,22,38,.28),transparent 22%,transparent 78%,rgba(13,22,38,.32))}
+.ft-band figcaption{position:absolute;left:0;right:0;bottom:0;
+  padding:14px clamp(20px,4vw,48px);font-size:.82rem;color:rgba(255,255,255,.82);
+  background:linear-gradient(0deg,rgba(12,21,36,.72),transparent);z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  @supports(animation-timeline:view()){
+    .ft-band img{animation:ft-band-drift linear both;
+      animation-timeline:view();animation-range:entry 0% exit 100%}
+    @keyframes ft-band-drift{from{transform:scale(1.06) translateY(-1.5%)}
+      to{transform:scale(1.06) translateY(1.5%)}}
+  }
+}

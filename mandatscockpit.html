@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FairTransition | Mandatscockpit – Transparenz im Trennungsprozess</title>
+<meta name="description" content="Das FairTransition Mandatscockpit gibt Unternehmen Überblick über laufende Trennungsprozesse: Phasenstatus, Aufgaben, Wissenssicherungsgrad – ohne die Vertraulichkeit der betroffenen Person zu verletzen.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fairtransition.ch/mandatscockpit">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fairtransition.ch/mandatscockpit">
+<meta property="og:title" content="FairTransition | Mandatscockpit – Transparenz im Trennungsprozess">
+<meta property="og:description" content="Das FairTransition Mandatscockpit gibt Unternehmen Überblick über laufende Trennungsprozesse: Phasenstatus, Aufgaben, Wissenssicherungsgrad – ohne die Vertraulichkeit der betroffenen Person zu verletzen.">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/modern.css">
+<style>
+.demo-badge{display:inline-block;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;font-size:.78rem;font-weight:700;letter-spacing:.04em;padding:4px 12px;margin-bottom:20px}
+.cockpit-full{background:var(--white);border:1px solid var(--gray-ln);border-radius:var(--r);overflow:hidden;margin-top:32px}
+.cockpit-header{display:grid;grid-template-columns:1fr auto;align-items:center;padding:20px 24px;border-bottom:1px solid var(--gray-ln);background:var(--blue)}
+.cockpit-header h3{color:var(--white);font-size:1rem;font-weight:700;margin:0}
+.cockpit-header span{color:rgba(255,255,255,.6);font-size:.78rem}
+.cockpit-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--gray-ln)}
+.kpi-cell{padding:18px 20px;border-right:1px solid var(--gray-ln)}
+.kpi-cell:last-child{border-right:none}
+.kpi-label{font-size:.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.kpi-value{font-size:1.4rem;font-weight:800;color:var(--blue)}
+.kpi-sub{font-size:.75rem;color:var(--gray);margin-top:2px}
+.cockpit-phases-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-bottom:1px solid var(--gray-ln)}
+.cp-phase{padding:14px 16px;border-right:1px solid var(--gray-ln);position:relative}
+.cp-phase:last-child{border-right:none}
+.cp-phase-label{font-size:.72rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.cp-phase-status{font-size:.78rem;color:var(--text)}
+.phase-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.dot-done{background:#16a34a}
+.dot-active{background:var(--ochre)}
+.dot-open{background:var(--gray-ln)}
+.cockpit-body{padding:24px}
+.cockpit-section-title{font-size:.72rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.cockpit-rows{display:flex;flex-direction:column;gap:8px}
+.cockpit-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;align-items:center;gap:16px;padding:12px 16px;background:var(--cream);border-radius:6px;font-size:.85rem}
+.cockpit-row-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:16px;padding:0 16px;font-size:.72rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.status-pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.02em}
+.pill-done{background:#dcfce7;color:#15803d}
+.pill-active{background:#fef3c7;color:#92400e}
+.pill-open{background:var(--gray-lt);color:var(--gray)}
+.wissen-progress{display:flex;align-items:center;gap:8px}
+.w-bar{flex:1;height:6px;background:var(--gray-ln);border-radius:3px;overflow:hidden}
+.w-fill{height:100%;background:var(--ochre);border-radius:3px}
+.cockpit-note{font-size:.8rem;color:var(--gray);padding:16px;background:var(--cream);border-radius:6px;border-left:3px solid var(--ochre);margin-top:16px}
+@media(max-width:680px){
+  .cockpit-kpi-row{grid-template-columns:1fr 1fr}
+  .cockpit-phases-row{grid-template-columns:1fr}
+  .cockpit-row,.cockpit-row-header{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<a href="index.html#main" class="skip-link">Zum Inhalt springen</a>
+<nav id="nav" aria-label="Hauptnavigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">fair<span>transition</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="unternehmen.html">Für Unternehmen</a></li>
+      <li><a href="ablauf.html">Ablauf</a></li>
+      <li><a href="wissenssicherung.html">Wissenssicherung</a></li>
+      <li><a href="vertraulichkeit.html">Vertraulichkeit</a></li>
+      <li><a href="ueber-fairtransition.html">Über uns</a></li>
+    </ul>
+    <a href="assessment.html" class="btn btn-primary btn-sm nav-cta" data-track="cta_nav">Situation einordnen</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+
+<section class="sub-hero" aria-labelledby="ck-h1">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="index.html">Startseite</a><span>›</span><span>Mandatscockpit</span>
+    </nav>
+    <span class="kicker">Produktvorschau</span>
+    <h1 id="ck-h1">Mandatscockpit – Transparenz im Trennungsprozess.</h1>
+    <p>Das Mandatscockpit ist die strukturierte Übersicht für Unternehmen, die ein aktives FairTransition-Mandat begleiten. Es zeigt Phasenstatus, offene Aufgaben und Wissenssicherungsfortschritt auf einen Blick.</p>
+  </div>
+</section>
+
+<section style="background:var(--cream);padding:60px 0" aria-labelledby="ck-demo">
+  <div class="container">
+    <div class="demo-badge" role="note">⚠ Demonstrationsansicht – keine realen Mandatsdaten</div>
+    <h2 id="ck-demo" style="font-size:1.3rem;font-weight:800;color:var(--blue);margin-bottom:4px">Beispielmandat: Leitungsübergang Schweiz NE</h2>
+    <p style="color:var(--gray);font-size:.9rem;margin-bottom:0">Mandatsnummer M-2024-041 · Erstellt: 15.01.2024 · Mandatsverantwortliche: FairTransition</p>
+
+    <div class="cockpit-full" role="region" aria-label="Demonstrationsansicht des Mandatscockpits">
+      <div class="cockpit-header">
+        <h3>Mandatscockpit – Übersicht</h3>
+        <span>Stand: Beispieldaten</span>
+      </div>
+
+      <div class="cockpit-kpi-row">
+        <div class="kpi-cell">
+          <div class="kpi-label">Gesamtstatus</div>
+          <div class="kpi-value">Phase 6/9</div>
+          <div class="kpi-sub">Neuorientierung aktiv</div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-label">Offene Aufgaben</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-sub">davon 1 dringend</div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-label">Wissenssicherung</div>
+          <div class="kpi-value">68%</div>
+          <div class="kpi-sub">Ziel: 100% bis KW 14</div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-label">Nächster Termin</div>
+          <div class="kpi-value">28. Feb.</div>
+          <div class="kpi-sub">Übergabegespräch</div>
+        </div>
+      </div>
+
+      <div class="cockpit-phases-row" aria-label="Mandatsphasen">
+        <div class="cp-phase"><div class="cp-phase-label">Erstklärung</div><div class="cp-phase-status"><span class="phase-dot dot-done"></span>Abgeschlossen</div></div>
+        <div class="cp-phase"><div class="cp-phase-label">Assessment</div><div class="cp-phase-status"><span class="phase-dot dot-done"></span>Abgeschlossen</div></div>
+        <div class="cp-phase"><div class="cp-phase-label">Mandat &amp; Komm.</div><div class="cp-phase-status"><span class="phase-dot dot-done"></span>Abgeschlossen</div></div>
+        <div class="cp-phase"><div class="cp-phase-label">Standortbest.</div><div class="cp-phase-status"><span class="phase-dot dot-done"></span>Abgeschlossen</div></div>
+        <div class="cp-phase"><div class="cp-phase-label">Neuorientierung</div><div class="cp-phase-status"><span class="phase-dot dot-active"></span>Aktiv</div></div>
+      </div>
+
+      <div class="cockpit-body">
+        <div class="cockpit-section-title">Aufgaben &amp; Meilensteine</div>
+        <div class="cockpit-row-header">
+          <div>Aufgabe</div>
+          <div>Verantwortung</div>
+          <div>Fällig</div>
+          <div>Status</div>
+        </div>
+        <div class="cockpit-rows">
+          <div class="cockpit-row">
+            <div><strong>Wissenslandkarte finalisieren</strong><br><span style="color:var(--gray);font-size:.8rem">Schlüsselprozesse &amp; Kontakte vollständig</span></div>
+            <div>FairTransition</div>
+            <div>20.02.2024</div>
+            <div><span class="status-pill pill-active">In Bearbeitung</span></div>
+          </div>
+          <div class="cockpit-row">
+            <div><strong>Übergabegespräch planen</strong><br><span style="color:var(--gray);font-size:.8rem">Termin mit Nachfolge &amp; HR</span></div>
+            <div>HR</div>
+            <div>28.02.2024</div>
+            <div><span class="status-pill pill-open">Offen</span></div>
+          </div>
+          <div class="cockpit-row">
+            <div><strong>Bewerbungsunterlagen aktualisiert</strong><br><span style="color:var(--gray);font-size:.8rem">LinkedIn, CV, Anschreiben</span></div>
+            <div>Mitarbeitende</div>
+            <div>15.02.2024</div>
+            <div><span class="status-pill pill-done">Erledigt</span></div>
+          </div>
+          <div class="cockpit-row">
+            <div><strong>Referenzgespräch vorbereiten</strong><br><span style="color:var(--gray);font-size:.8rem">Abstimmung Formulierung mit GL</span></div>
+            <div>GL + FairTransition</div>
+            <div>05.03.2024</div>
+            <div><span class="status-pill pill-open">Offen</span></div>
+          </div>
+          <div class="cockpit-row">
+            <div><strong>Kommunikation intern abgeschlossen</strong><br><span style="color:var(--gray);font-size:.8rem">Alle Beteiligten informiert</span></div>
+            <div>GL + HR</div>
+            <div>10.01.2024</div>
+            <div><span class="status-pill pill-done">Erledigt</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px">
+          <div class="cockpit-section-title">Wissenssicherungsfortschritt</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="wissen-progress">
+              <div style="width:140px;font-size:.82rem;color:var(--text)">Schlüsselaufgaben</div>
+              <div class="w-bar"><div class="w-fill" style="width:90%"></div></div>
+              <div style="width:32px;font-size:.78rem;color:var(--gray);text-align:right">90%</div>
+            </div>
+            <div class="wissen-progress">
+              <div style="width:140px;font-size:.82rem;color:var(--text)">Kontaktlandschaft</div>
+              <div class="w-bar"><div class="w-fill" style="width:75%"></div></div>
+              <div style="width:32px;font-size:.78rem;color:var(--gray);text-align:right">75%</div>
+            </div>
+            <div class="wissen-progress">
+              <div style="width:140px;font-size:.82rem;color:var(--text)">Risiken &amp; Verpfl.</div>
+              <div class="w-bar"><div class="w-fill" style="width:60%"></div></div>
+              <div style="width:32px;font-size:.78rem;color:var(--gray);text-align:right">60%</div>
+            </div>
+            <div class="wissen-progress">
+              <div style="width:140px;font-size:.82rem;color:var(--text)">Erfahrungswissen</div>
+              <div class="w-bar"><div class="w-fill" style="width:40%"></div></div>
+              <div style="width:32px;font-size:.78rem;color:var(--gray);text-align:right">40%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cockpit-note">
+          <strong>Demonstrationsansicht:</strong> Diese Übersicht zeigt fiktive Beispieldaten und dient ausschliesslich der Produktvorschau. Das Mandatscockpit wird in aktiven FairTransition-Mandaten individuell eingerichtet und enthält ausschliesslich Daten, die das Unternehmen und die betroffene Person im Mandat freigegeben haben.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white)" aria-labelledby="ck-funktion">
+  <div class="container">
+    <span class="kicker">Was das Cockpit leistet</span>
+    <div class="rule"></div>
+    <h2 id="ck-funktion" class="section-title">Kontrolle und Übersicht im Trennungsprozess.</h2>
+    <p class="section-lead">Das Mandatscockpit ersetzt E-Mail-Ketten und unstrukturierte Status-Updates. Es schafft Transparenz für das Unternehmen, ohne die Vertraulichkeit der betroffenen Person zu verletzen.</p>
+
+    <div class="pos-grid" style="margin-top:40px">
+      <div class="pos-card">
+        <div class="pos-num">01</div>
+        <h3>Phasenstatus</h3>
+        <p>Alle 9 Mandatsphasen auf einen Blick: was ist abgeschlossen, was ist aktiv, was steht bevor.</p>
+      </div>
+      <div class="pos-card">
+        <div class="pos-num">02</div>
+        <h3>Aufgaben &amp; Zuständigkeiten</h3>
+        <p>Wer macht was bis wann – klar zugeordnet zwischen Unternehmen, FairTransition und betroffener Person.</p>
+      </div>
+      <div class="pos-card">
+        <div class="pos-num">03</div>
+        <h3>Wissenssicherungsgrad</h3>
+        <p>Fortschrittsanzeige pro Wissensbereich, damit der Übergabezeitpunkt aktiv gesteuert werden kann.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--blue-dk);padding:60px 0;text-align:center">
+  <div class="container">
+    <h2 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:12px">Mandatscockpit in Ihrem Auftrag</h2>
+    <p style="color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 28px;line-height:1.7">Das Cockpit wird für jedes Mandat individuell eingerichtet. Es gibt keine Standard-Ansicht – nur Ihre Situation und Ihre Daten.</p>
+    <a href="assessment.html" class="btn btn-primary" data-track="cta_cockpit_assess">Situation einordnen</a>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">fair<span>transition</span></div>
+        <p>Faire Übergangsbegleitung für Schweizer Unternehmen.<br><em>Wenn Arbeit endet, beginnt Verantwortung.</em></p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="assessment.html">Fair Transition Assessment</a></li>
+          <li><a href="unternehmen.html">Für Unternehmen</a></li>
+          <li><a href="mitarbeitende.html">Begleitung für Mitarbeitende</a></li>
+          <li><a href="wissenssicherung.html">Wissenssicherung</a></li>
+          <li><a href="mandatscockpit.html">Mandatscockpit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informationen</h4>
+        <ul>
+          <li><a href="ablauf.html">Ablauf</a></li>
+          <li><a href="vertraulichkeit.html">Vertraulichkeit</a></li>
+          <li><a href="ueber-fairtransition.html">Über FairTransition</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="mailto:kontakt@fairtransition.ch">E-Mail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FairTransition – Faire Übergangsbegleitung · Schweiz</span>
+      <span>
+        <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+        <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+        <a href="mailto:kontakt@fairtransition.ch">kontakt@fairtransition.ch</a>
+      </span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

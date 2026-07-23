@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FairTransition | Eine persönliche Botschaft an Schweizer KMU-Geschäftsführung</title>
+<meta name="description" content="Bevor FairTransition offiziell startet: eine persönliche Video-Botschaft von Artem Senik an Geschäftsführerinnen und Geschäftsführer von Schweizer KMU – warum faire Übergänge unternehmerisch entscheidend sind.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="FairTransition – Eine persönliche Botschaft an KMU-Geschäftsführung">
+<meta property="og:description" content="Warum ich FairTransition gründe: persönliche Erfahrung, unternehmerische Absicht – und ein besserer Weg für Trennungen und Übergänge in Schweizer KMU.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/modern.css">
+<style>
+/* ── Pre-Start – seitenspezifisch (nutzt globale Design-Tokens) ── */
+.ps-page{min-height:100vh;display:flex;flex-direction:column;background:
+  radial-gradient(1100px 600px at 80% -10%, rgba(201,169,110,.10), transparent 60%),
+  radial-gradient(900px 700px at -10% 110%, rgba(201,169,110,.07), transparent 55%),
+  linear-gradient(165deg,#152238 0%,#0f1a2c 55%,#0c1524 100%);
+  color:var(--white);overflow:hidden;position:relative}
+.ps-page::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 75%)}
+.ps-topbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;
+  padding:22px clamp(20px,4vw,48px)}
+.ps-logo{font-size:1.3rem;font-weight:700;letter-spacing:.5px;color:var(--white);text-decoration:none}
+.ps-logo span{color:var(--ochre)}
+.ps-topbar .btn{white-space:nowrap}
+.ps-hero{position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:clamp(24px,5vh,56px) 20px}
+.ps-inner{max-width:880px;margin:0 auto;text-align:center}
+.ps-badge{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);
+  border:1px solid rgba(201,169,110,.45);border-radius:999px;padding:8px 18px;
+  background:rgba(201,169,110,.08);backdrop-filter:blur(4px)}
+.ps-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ochre);
+  box-shadow:0 0 0 0 rgba(201,169,110,.6);animation:ps-pulse 2.2s infinite}
+@keyframes ps-pulse{70%{box-shadow:0 0 0 9px rgba(201,169,110,0)}100%{box-shadow:0 0 0 0 rgba(201,169,110,0)}}
+.ps-h1{font-size:clamp(1.9rem,4.6vw,3.1rem);line-height:1.15;margin:26px 0 16px;font-weight:800}
+.ps-h1 em{font-style:normal;color:var(--ochre)}
+.ps-lead{font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.65;color:rgba(255,255,255,.82);
+  max-width:640px;margin:0 auto}
+/* Video-Karte */
+.ps-video-wrap{margin:40px auto 0;max-width:760px;position:relative}
+.ps-video-glow{position:absolute;inset:-2px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(201,169,110,.55),rgba(201,169,110,.08) 45%,rgba(255,255,255,.14));
+  filter:blur(1px);z-index:0}
+.ps-video-card{position:relative;z-index:1;border-radius:18px;overflow:hidden;
+  background:#0a1220;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.ps-video-card video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0a1220}
+/* Fallback-Karte, solange kein Video hochgeladen ist */
+.ps-fallback{display:none;aspect-ratio:16/9;align-items:center;justify-content:center;
+  flex-direction:column;gap:18px;padding:clamp(20px,5vw,48px);text-align:center;
+  background:linear-gradient(150deg,#13203a,#0d1729)}
+.ps-fallback.ps-active{display:flex}
+.ps-fallback .ps-play{width:74px;height:74px;border-radius:50%;border:2px solid rgba(201,169,110,.6);
+  display:flex;align-items:center;justify-content:center;background:rgba(201,169,110,.1)}
+.ps-fallback .ps-play svg{margin-left:4px}
+.ps-fallback blockquote{margin:0;font-size:clamp(1rem,2vw,1.25rem);line-height:1.6;
+  color:rgba(255,255,255,.9);font-style:italic;max-width:560px}
+.ps-fallback cite{font-style:normal;font-size:.85rem;color:var(--ochre);letter-spacing:.06em}
+.ps-note{margin-top:14px;font-size:.82rem;color:rgba(255,255,255,.78)}
+/* CTA-Zeile */
+.ps-ctas{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.ps-micro{margin-top:14px;font-size:.82rem;color:rgba(255,255,255,.78)}
+/* Scroll-Hinweis */
+.ps-scroll{position:relative;z-index:2;text-align:center;padding-bottom:26px}
+.ps-scroll a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.8rem;letter-spacing:.1em;
+  text-transform:uppercase}
+.ps-scroll a::after{content:"↓";display:block;margin-top:6px;animation:ps-bob 1.8s ease-in-out infinite}
+@keyframes ps-bob{50%{transform:translateY(5px)}}
+/* Story-/Transkript-Bereich */
+.ps-story{background:var(--white);color:var(--navy,#152238);padding:clamp(56px,9vh,96px) 20px}
+.ps-story .container{max-width:760px}
+.ps-story h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:8px}
+.ps-story .ps-sub{color:rgba(21,34,56,.65);margin-bottom:36px}
+.ps-story p{line-height:1.75;margin-bottom:18px;color:rgba(21,34,56,.88)}
+.ps-story h3{margin:34px 0 12px;font-size:1.15rem;color:var(--navy,#152238)}
+.ps-benefits{list-style:none;padding:0;margin:18px 0 24px;display:grid;gap:12px}
+.ps-benefits li{position:relative;padding-left:30px;line-height:1.6}
+.ps-benefits li::before{content:"";position:absolute;left:0;top:9px;width:16px;height:16px;
+  border-radius:50%;background:rgba(201,169,110,.18);border:2px solid var(--ochre)}
+.ps-kern{margin-top:36px;border-left:3px solid var(--ochre);padding:6px 0 6px 22px;
+  font-size:1.12rem;line-height:1.65;font-weight:600}
+.ps-story-cta{margin-top:44px;text-align:center}
+.ps-footer{background:#0c1524;color:rgba(255,255,255,.75);font-size:.82rem;
+  padding:26px 20px;text-align:center}
+.ps-footer a{color:rgba(255,255,255,.75)}
+@media (prefers-reduced-motion: reduce){
+  .ps-badge::before,.ps-scroll a::after{animation:none}
+}
+@media (max-width:600px){
+  .ps-topbar .btn{padding:9px 14px;font-size:.82rem}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#ps-main">Zum Inhalt springen</a>
+
+<div class="ps-page">
+  <header class="ps-topbar">
+    <a href="prestart.html" class="ps-logo">fair<span>transition</span></a>
+    <a href="kontakt.html" class="btn btn-primary btn-sm" data-track="cta_ps_top">Erstgespräch anfragen</a>
+  </header>
+
+  <main id="ps-main" class="ps-hero">
+    <div class="ps-inner">
+      <span class="ps-badge">Bald verfügbar · Eine persönliche Vorbotschaft</span>
+      <h1 class="ps-h1">Bevor FairTransition startet:<br>ein Wort <em>an die Geschäftsführung</em>.</h1>
+      <p class="ps-lead">Ich habe einen belastenden Trennungsprozess selbst durchlebt – als Mitarbeiter in einem grossen Medizintechnik-Unternehmen. Was ich daraus gelernt habe, richtet sich heute an Sie: an Geschäftsführerinnen und Geschäftsführer von Schweizer KMU.</p>
+
+      <div class="ps-video-wrap">
+        <div class="ps-video-glow" aria-hidden="true"></div>
+        <div class="ps-video-card">
+          <video id="psVideo" controls preload="metadata"
+                 aria-label="Persönliche Video-Botschaft von Artem Senik an KMU-Geschäftsführung">
+            <source src="videos/vorstellung-artem.mp4" type="video/mp4">
+            <source src="videos/vorstellung-artem.webm" type="video/webm">
+          </video>
+          <div class="ps-fallback" id="psFallback">
+            <div class="ps-play" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M7 5.5v13l11-6.5-11-6.5z" fill="#c9a96e"/>
+              </svg>
+            </div>
+            <blockquote>«Rückblickend ist klar: Der Trennungsprozess war für beide Seiten länger, belastender und kostspieliger als notwendig. Genau hier setzt FairTransition an.»</blockquote>
+            <cite>Artem Senik · Gründer FairTransition</cite>
+          </div>
+        </div>
+      </div>
+      <p class="ps-note" id="psNote">Die Video-Botschaft wird in Kürze veröffentlicht. Die vollständige Geschichte lesen Sie bereits unten.</p>
+
+      <div class="ps-ctas">
+        <a href="kontakt.html" class="btn btn-primary btn-lg" data-track="cta_ps_primary">Vertrauliches Erstgespräch</a>
+        <a href="#geschichte" class="btn btn-outline" data-track="cta_ps_story">Meine Geschichte lesen</a>
+      </div>
+      <p class="ps-micro">Unverbindlich · Vertraulich · 45 Minuten</p>
+    </div>
+  </main>
+
+  <div class="ps-scroll">
+    <a href="#geschichte">Weiterlesen</a>
+  </div>
+</div>
+
+<!-- ══ GESCHICHTE / TRANSKRIPT ══════════════════════════════ -->
+<section id="geschichte" class="ps-story" aria-labelledby="ps-story-h2">
+  <div class="container">
+    <h2 id="ps-story-h2">Ich kenne die Situation nicht nur aus der Theorie.</h2>
+    <p class="ps-sub">Die persönliche Geschichte hinter FairTransition – zugleich das Transkript der Video-Botschaft.</p>
+
+    <p>Ich habe selbst in einem grossen medizintechnischen Unternehmen gearbeitet. Nach Veränderungen in der Führungsstruktur erhielt ich einen neuen Vorgesetzten. Die Zusammenarbeit wurde zunehmend schwierig. Meine Arbeitsbelastung stieg, während Konzentration, Motivation und Leistungsfähigkeit immer weiter abnahmen.</p>
+
+    <p>Gleichzeitig spürte ich, dass ich mich beruflich neu orientieren wollte. Doch statt frühzeitig zu handeln, versuchte ich lange, mich der Situation anzupassen. Zukunftsängste hielten mich zurück. Ich wurde erschöpft, gesundheitlich angeschlagen und verlor zunehmend die Klarheit darüber, wie ein guter nächster Schritt aussehen könnte.</p>
+
+    <p>Das Arbeitsverhältnis endete schliesslich. Erst nach einer dreimonatigen Bewerbungsphase unterschrieb ich einen neuen Arbeitsvertrag.</p>
+
+    <p>Rückblickend ist klar: Der Trennungsprozess war für beide Seiten länger, belastender und kostspieliger als notwendig. Gleichzeitig gingen mit meinem Ausscheiden betriebsinternes Wissen, gewachsene Zusammenhänge und praktische Erfahrungen verloren.</p>
+
+    <h3>Genau hier setzt FairTransition an.</h3>
+
+    <p>Ich habe diesen Prozess selbst durchlebt. Deshalb kenne ich nicht nur die Belastung auf Seiten der Mitarbeitenden, sondern auch die Folgen für das Unternehmen.</p>
+
+    <p>Meine Absicht ist es, diese Erfahrung unternehmerisch zu nutzen und Trennungs- sowie Übergangsprozesse für beide Seiten aktiver, strukturierter und fairer zu gestalten.</p>
+
+    <p>Ein möglicher Weg besteht darin, belastete, unzufriedene oder innerlich bereits wechselbereite Mitarbeitende frühzeitig zu erkennen und sie noch während des bestehenden Arbeitsverhältnisses bis zu einer neuen beruflichen Perspektive zu begleiten. Dadurch können:</p>
+
+    <ul class="ps-benefits">
+      <li>Zukunftsängste frühzeitig reduziert,</li>
+      <li>Eskalationen und längere Leistungseinbrüche vermieden,</li>
+      <li>unnötige Krankheitsphasen verkürzt,</li>
+      <li>Trennungen geordneter vorbereitet,</li>
+      <li>und wertvolles Wissen rechtzeitig gesichert werden.</li>
+    </ul>
+
+    <p>Parallel zur beruflichen Neuorientierung kann das vorhandene Erfahrungswissen gemeinsam mit dem Mitarbeitenden systematisiert, dokumentiert und für eine Nachfolge aufbereitet werden. So entsteht kein abrupter Verlust, sondern ein kontrollierter Übergang.</p>
+
+    <h3>FairTransition verbindet zwei Interessen.</h3>
+
+    <p>Das Unternehmen gewinnt Klarheit, Wissenstransfer und Entlastung. Der Mitarbeitende erhält Orientierung, Sicherheit und eine realistische neue Perspektive.</p>
+
+    <p class="ps-kern">Trennung nicht erst verwalten, wenn sie unvermeidbar geworden ist – sondern Übergänge frühzeitig und verantwortungsvoll gestalten.</p>
+
+    <div class="ps-story-cta">
+      <a href="kontakt.html" class="btn btn-primary btn-lg" data-track="cta_ps_bottom">Vertrauliches Erstgespräch anfragen</a>
+      <p class="ps-micro" style="color:rgba(21,34,56,.78)">Oder per E-Mail: <a href="mailto:kontakt@fairtransition.ch" style="color:inherit">kontakt@fairtransition.ch</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="ps-footer">
+  © 2026 FairTransition · Schweiz &nbsp;·&nbsp;
+  <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+  <a href="impressum.html">Impressum</a>
+</footer>
+
+<script>
+/* Video-Fallback: Zeigt die Zitat-Karte, solange videos/vorstellung-artem.mp4
+   noch nicht hochgeladen ist. Sobald die Datei existiert, erscheint automatisch
+   der Player – keine Code-Änderung nötig. */
+(function () {
+  var v = document.getElementById('psVideo');
+  var fb = document.getElementById('psFallback');
+  var note = document.getElementById('psNote');
+  function showFallback() {
+    v.style.display = 'none';
+    fb.classList.add('ps-active');
+  }
+  function showVideo() {
+    fb.classList.remove('ps-active');
+    v.style.display = 'block';
+    if (note) note.textContent = 'Dauer: kurze persönliche Botschaft · Transkript unten auf dieser Seite.';
+  }
+  v.addEventListener('error', showFallback, true);
+  v.addEventListener('loadedmetadata', showVideo);
+  /* Falls der Browser gar nichts lädt (Datei fehlt), nach kurzer Zeit prüfen */
+  setTimeout(function () {
+    if (v.readyState === 0) showFallback();
+  }, 1500);
+})();
+</script>
+</body>
+</html>

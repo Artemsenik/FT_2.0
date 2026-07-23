@@ -1,0 +1,29 @@
+# ── Lokales Projektarchiv – niemals committen ─────────────
+_local_archive/
+*.local-backup.zip
+
+# ── Betriebssystem-/Editor-Artefakte ─────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+.idea/
+.vscode/
+
+# ── Reproduzierbare Build-/Abhängigkeitsordner ───────────
+node_modules/
+.next/
+dist/
+build/
+out/
+.cache/
+coverage/
+tmp/
+
+# ── Sensible Dateien (falls je vorhanden) ────────────────
+.env
+.env.local
+.env.production
+*.key
+*.pem

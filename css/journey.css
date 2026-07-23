@@ -1,0 +1,264 @@
+/* ══════════════════════════════════════════════════════════════
+   FairTransition – Customer-Journey-Startseite
+   Vanilla-Umsetzung (kein Framework, kein GSAP):
+   position:sticky + IntersectionObserver + SVG-Linien.
+   Nutzt die globalen Design-Tokens aus style.css (Navy/Ocker).
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Grundrhythmus der Stationen ── */
+.jr-station{padding:clamp(72px,12vh,140px) 20px;position:relative}
+.jr-station .container{max-width:1080px}
+.jr-narrow{max-width:720px;margin-inline:auto}
+.jr-eyebrow{display:block;font-size:.78rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ochre);margin-bottom:14px}
+.jr-h{font-size:clamp(1.7rem,3.6vw,2.6rem);line-height:1.2;font-weight:800;margin-bottom:18px}
+.jr-lead{font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.7;color:var(--gray)}
+.jr-dark{background:linear-gradient(170deg,#152238,#0f1a2c);color:var(--white)}
+.jr-dark .jr-lead{color:rgba(255,255,255,.78)}
+.jr-dim{background:#eef1f5}
+.jr-light{background:var(--white)}
+
+/* ── Kapitel-Linienmotiv (SVG pro Station) ── */
+.jr-line{display:block;width:120px;height:34px;margin-bottom:22px;overflow:visible}
+.jr-line path{fill:none;stroke:var(--ochre);stroke-width:2;stroke-linecap:round;
+  stroke-dasharray:var(--len,200);stroke-dashoffset:var(--len,200);
+  transition:stroke-dashoffset 1.4s ease .15s}
+.jr-line.draw path{stroke-dashoffset:0}
+.jr-dark .jr-line path{stroke:var(--ochre)}
+
+/* ── Reveal-Verhalten (nur wenn JS aktiv) ── */
+html.js .jr-reveal{opacity:0;transform:translateY(22px);
+  transition:opacity .7s ease,transform .7s ease}
+html.js .jr-reveal.in-view{opacity:1;transform:none}
+html.js .jr-stagger>*{opacity:0;transform:translateY(16px);
+  transition:opacity .6s ease,transform .6s ease}
+html.js .jr-stagger.in-view>*{opacity:1;transform:none}
+html.js .jr-stagger.in-view>*:nth-child(1){transition-delay:.05s}
+html.js .jr-stagger.in-view>*:nth-child(2){transition-delay:.18s}
+html.js .jr-stagger.in-view>*:nth-child(3){transition-delay:.31s}
+html.js .jr-stagger.in-view>*:nth-child(4){transition-delay:.44s}
+html.js .jr-stagger.in-view>*:nth-child(5){transition-delay:.57s}
+html.js .jr-stagger.in-view>*:nth-child(6){transition-delay:.70s}
+
+/* ── Station 1: Hero ── */
+.jr-hero{min-height:calc(66vh - 64px);display:flex;align-items:center;
+  background:
+   radial-gradient(900px 520px at 85% 0%,rgba(201,169,110,.10),transparent 60%),
+   linear-gradient(168deg,#152238,#0f1a2c 60%,#0c1524);color:var(--white)}
+.jr-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.85fr);
+  gap:clamp(28px,5vw,64px);align-items:center}
+.jr-hero h1{font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.18;font-weight:800;margin:16px 0 20px}
+.jr-hero .jr-lead{color:rgba(255,255,255,.82);max-width:520px}
+.jr-hero-ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.jr-trust{margin-top:16px;font-size:.82rem;color:rgba(255,255,255,.78);letter-spacing:.04em}
+
+/* ── Medien-Slots & graue Produktionsboxen ── */
+.jr-media{margin:0;border-radius:22px;overflow:hidden;position:relative;
+  box-shadow:0 24px 60px rgba(10,18,32,.35)}
+.jr-media img,.jr-media video{display:block;width:100%;height:100%;object-fit:cover}
+.jr-ratio-45{aspect-ratio:4/5}
+.jr-ratio-169{aspect-ratio:16/9}
+.jr-ratio-32{aspect-ratio:3/2}
+.jr-ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  gap:12px;padding:clamp(18px,4vw,34px);
+  background:linear-gradient(160deg,#e8eaee,#d9dde3);
+  border:1px dashed #9aa3af;border-radius:22px;box-shadow:inset 0 2px 12px rgba(0,0,0,.06);
+  color:#3d4450;overflow:auto}
+.jr-ph-badge{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;
+  letter-spacing:.12em;color:#5b6470}
+.jr-ph-badge svg{flex:none}
+.jr-ph-purpose{font-size:.88rem;line-height:1.55;margin:0}
+.jr-ph-notes{font-size:.8rem;line-height:1.5}
+.jr-ph-notes summary{cursor:pointer;font-weight:600;color:#4a5260}
+.jr-ph-notes ul{margin:8px 0 0;padding-left:18px}
+.jr-ph-notes li{margin-bottom:3px}
+.jr-ph-file{font-size:.72rem;font-family:ui-monospace,monospace;color:#4a5260}
+body.jr-hide-guides .jr-ph-notes{display:none}
+
+/* ── Station 2: Sticky-Story ── */
+.jr-story-grid{display:grid;grid-template-columns:minmax(300px,.9fr) minmax(0,1fr);
+  gap:clamp(28px,5vw,72px);align-items:start}
+.jr-sticky{position:sticky;top:96px}
+.jr-seq{display:flex;flex-direction:column;gap:min(22vh,190px);padding:8vh 0 6vh}
+.jr-seq p{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.5;font-weight:600;max-width:420px}
+html.js .jr-seq p{opacity:.5;transform:translateY(10px);
+  transition:opacity .5s ease,transform .5s ease}
+html.js .jr-seq p.in-view{opacity:1;transform:none}
+.jr-story-close{font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.6;font-weight:600;
+  border-left:3px solid var(--ochre);padding-left:20px;max-width:520px}
+
+/* ── Station 3: Begriffe ── */
+.jr-terms{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.jr-terms span{border:1px solid rgba(255,255,255,.25);border-radius:999px;
+  padding:9px 20px;font-size:.92rem;color:rgba(255,255,255,.85)}
+.jr-terms span:last-child{border-color:rgba(201,169,110,.6);color:var(--ochre)}
+
+/* ── Station 4: Split ── */
+.jr-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);margin-top:34px}
+.jr-split-col{background:var(--white);border:1px solid #e3e7ec;border-radius:18px;
+  padding:clamp(20px,3vw,32px)}
+.jr-split-col h3{font-size:1.05rem;margin-bottom:12px}
+.jr-split-col p{line-height:1.65;color:var(--gray);margin-bottom:14px}
+.jr-chips{display:flex;flex-wrap:wrap;gap:8px}
+.jr-chips span{background:#eef1f5;border-radius:8px;padding:6px 12px;font-size:.8rem;color:#4a5260}
+.jr-core{margin-top:38px;text-align:center;font-size:clamp(1.05rem,1.8vw,1.3rem);
+  line-height:1.6;font-weight:600;max-width:640px;margin-inline:auto}
+
+/* ── Station 5: Wendepunkt ── */
+.jr-turn{background:linear-gradient(180deg,#0f1a2c 0%,#1b2a44 45%,#f6f7f9 100%);color:var(--white)}
+.jr-before{display:grid;gap:14px;margin:28px 0 40px;max-width:560px}
+.jr-before p{font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.55;color:rgba(255,255,255,.85);
+  padding-left:18px;border-left:2px solid rgba(201,169,110,.5)}
+.jr-compare{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,40px);margin-top:8px}
+.jr-path{border-radius:18px;padding:clamp(20px,3vw,30px)}
+.jr-path h3{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.jr-path ol{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.jr-path li{position:relative;padding-left:24px;line-height:1.5;font-size:.95rem}
+.jr-path li::before{content:"→";position:absolute;left:0;opacity:.6}
+.jr-path li:first-child::before{content:"·"}
+.jr-path-re{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.85)}
+.jr-path-ge{background:var(--white);border:1px solid #e3e7ec;color:#2b3442;
+  box-shadow:0 18px 50px rgba(10,18,32,.18)}
+.jr-path-ge h3{color:var(--ochre)}
+.jr-turn .jr-core{color:#2b3442;margin-top:48px}
+
+/* ── Station 6: Modell ── */
+.jr-model{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(16px,3vw,36px);
+  align-items:stretch;margin-top:36px}
+.jr-model-col{background:var(--white);border:1px solid #e3e7ec;border-radius:18px;
+  padding:clamp(20px,3vw,30px)}
+.jr-model-col h3{font-size:1rem;margin-bottom:14px}
+.jr-model-col ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.jr-model-col li{position:relative;padding-left:24px;line-height:1.5;font-size:.92rem;color:#3d4450}
+.jr-model-col li::before{content:"";position:absolute;left:0;top:7px;width:12px;height:12px;
+  border-radius:50%;border:2px solid var(--ochre);background:rgba(201,169,110,.15)}
+.jr-model-mid{display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;gap:10px;padding:20px 8px}
+.jr-model-mid strong{font-size:1.1rem}
+.jr-model-mid small{display:block;color:var(--gray);line-height:1.5}
+
+/* ── Station 7: Prozess-Timeline ── */
+.jr-proc{position:relative;max-width:680px;margin:40px auto 0;padding-left:42px}
+.jr-proc::before{content:"";position:absolute;left:14px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(#d8dde4,#d8dde4)}
+.jr-proc-line{position:absolute;left:14px;top:6px;width:2px;background:var(--ochre);
+  height:0;transition:height .5s linear}
+.jr-step{position:relative;padding-bottom:44px}
+.jr-step:last-child{padding-bottom:0}
+.jr-step::before{content:"";position:absolute;left:-35px;top:4px;width:16px;height:16px;
+  border-radius:50%;background:var(--white);border:3px solid #c3cad4;transition:border-color .4s}
+.jr-step.in-view::before{border-color:var(--ochre)}
+.jr-step h3{font-size:1.05rem;margin-bottom:8px}
+.jr-step h3 span{color:var(--ochre);font-family:ui-monospace,monospace;font-size:.85rem;margin-right:10px}
+.jr-step p{line-height:1.65;color:var(--gray);max-width:560px}
+
+/* ── Station 8: Vertraulichkeit ── */
+.jr-conf{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,40px);margin-top:34px}
+.jr-conf-col{border-radius:18px;padding:clamp(20px,3vw,30px)}
+.jr-conf-open{background:var(--white);border:1px solid #e3e7ec}
+.jr-conf-closed{background:#152238;color:var(--white)}
+.jr-conf-col h3{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.jr-conf-open h3{color:var(--ochre)}
+.jr-conf-closed h3{color:rgba(255,255,255,.7)}
+.jr-conf-col ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.jr-conf-col li{position:relative;padding-left:22px;line-height:1.5;font-size:.92rem}
+.jr-conf-open li::before{content:"→";position:absolute;left:0;color:var(--ochre)}
+.jr-conf-closed li{color:rgba(255,255,255,.82)}
+.jr-conf-closed li::before{content:"·";position:absolute;left:4px;color:rgba(255,255,255,.5)}
+.jr-agree{margin-top:30px;text-align:center;color:var(--gray);line-height:1.65;max-width:560px;
+  margin-inline:auto}
+
+/* ── Station 9: Einladung ── */
+.jr-invite{background:linear-gradient(170deg,#152238,#0c1524);color:var(--white)}
+.jr-invite-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,1.05fr);
+  gap:clamp(28px,5vw,64px);align-items:center}
+.jr-invite .jr-lead{color:rgba(255,255,255,.8)}
+.jr-invite-meta{margin-top:22px;display:grid;gap:6px;font-size:.88rem;color:rgba(255,255,255,.65)}
+.jr-transcript{margin-top:26px;font-size:.9rem}
+.jr-transcript summary{cursor:pointer;color:var(--ochre);font-weight:600}
+.jr-transcript div{margin-top:14px;line-height:1.7;color:rgba(255,255,255,.8);
+  border-left:2px solid rgba(201,169,110,.4);padding-left:18px;white-space:pre-line}
+
+/* ── Vertiefen ── */
+.jr-deep{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:30px}
+.jr-deep a{display:block;background:var(--white);border:1px solid #e3e7ec;border-radius:14px;
+  padding:20px;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s}
+.jr-deep a:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(10,18,32,.12)}
+.jr-deep strong{display:block;margin-bottom:6px;color:#1c2a44}
+.jr-deep span{font-size:.85rem;color:var(--gray);line-height:1.5}
+
+/* ── Persistenter Kontaktzugang (nur Desktop) ── */
+.jr-fixed-cta{position:fixed;right:26px;bottom:26px;z-index:60;
+  background:var(--ochre);color:#1c2333;font-weight:600;font-size:.88rem;
+  padding:12px 20px;border-radius:999px;text-decoration:none;
+  box-shadow:0 14px 34px rgba(10,18,32,.35);
+  opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .4s ease,transform .4s ease}
+.jr-fixed-cta.visible{opacity:1;transform:none;pointer-events:auto}
+@media (max-width:900px){.jr-fixed-cta{display:none}}
+
+/* ── Responsive ── */
+@media (max-width:860px){
+  .jr-hero-grid,.jr-invite-grid{grid-template-columns:1fr}
+  .jr-hero-grid .jr-media{order:-1;max-width:420px}
+  .jr-story-grid{grid-template-columns:1fr}
+  .jr-sticky{position:static}
+  .jr-seq{gap:56px;padding:32px 0 8px}
+  html.js .jr-seq p{opacity:1;transform:none}
+  .jr-split,.jr-compare,.jr-conf{grid-template-columns:1fr}
+  .jr-model{grid-template-columns:1fr}
+  .jr-model-mid{order:-1}
+}
+
+/* ── Reduced Motion: alles sofort sichtbar, keine Übergänge ── */
+@media (prefers-reduced-motion: reduce){
+  html.js .jr-reveal,html.js .jr-stagger>*,html.js .jr-seq p{
+    opacity:1 !important;transform:none !important;transition:none !important}
+  .jr-line path{stroke-dashoffset:0 !important;transition:none !important}
+  .jr-proc-line{transition:none !important}
+  .jr-fixed-cta{transition:none}
+}
+
+/* ══ Klarheits-Band über dem Hero (Angebot · Ansatz · Nutzen) ══
+   Kompakt gehalten: soll in ~5 Sekunden scanbar sein und den Hero
+   nicht aus dem ersten Bildschirm drängen. */
+.ft-clarity{
+  background:linear-gradient(180deg,#f8f9fb,#eef1f5);
+  border-bottom:1px solid #e1e6ec;
+  padding:clamp(14px,2vh,22px) 20px;
+}
+.ft-clarity-lead{
+  font-size:clamp(.98rem,1.5vw,1.15rem);line-height:1.5;
+  color:#1c2a44;max-width:900px;margin:0 0 clamp(10px,1.2vh,14px);
+}
+.ft-clarity-lead strong{font-weight:700}
+.ft-clarity-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2vw,28px);
+}
+.ft-clarity-item{position:relative;padding-top:8px;border-top:2px solid var(--ochre)}
+.ft-clarity-item:nth-child(2){border-top-color:#c3cad4}
+.ft-clarity-item:nth-child(3){border-top-color:#c3cad4}
+.ft-clarity-label{
+  display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ochre-ink,#7E6130);margin-bottom:5px;
+}
+.ft-clarity-item p{margin:0;font-size:.875rem;line-height:1.55;color:#4a5260}
+@media (max-width:820px){
+  /* Mobil: nur die Kernaussage über dem Hero, damit die H1 im ersten
+     Bildschirm bleibt. Die drei Details erscheinen als kompakte Liste
+     erst unterhalb des Heros wieder (siehe .ft-clarity-echo). */
+  .ft-clarity{padding:14px 20px}
+  .ft-clarity-grid{display:none}
+  .ft-clarity-lead{margin-bottom:0;font-size:.98rem;line-height:1.5}
+}
+/* Mobile Wiederholung der drei Punkte direkt nach dem Hero */
+.ft-clarity-echo{display:none}
+@media (max-width:820px){
+  .ft-clarity-echo{display:block;background:#f8f9fb;border-bottom:1px solid #e1e6ec;
+    padding:26px 20px}
+  .ft-clarity-echo .ft-clarity-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  .ft-clarity-echo .ft-clarity-item{padding-top:10px}
+  .ft-clarity-echo .ft-clarity-item p{font-size:.9rem}
+}

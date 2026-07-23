@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://fairtransition.ch/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://fairtransition.ch/unternehmen.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://fairtransition.ch/mitarbeitende.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://fairtransition.ch/assessment.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://fairtransition.ch/ablauf.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fairtransition.ch/wissenssicherung.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fairtransition.ch/kontakt.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fairtransition.ch/vertraulichkeit.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fairtransition.ch/ueber-fairtransition.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fairtransition.ch/mandatscockpit.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://fairtransition.ch/fallstudie.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>

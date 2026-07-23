@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FairTransition | Kontakt – Direkte Anfrage oder strukturiertes Assessment</title>
+<meta name="description" content="Kontaktieren Sie FairTransition für ein erstes vertrauliches Gespräch. Per E-Mail, Telefon oder über das strukturierte Assessment-Formular.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fairtransition.ch/kontakt">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/modern.css">
+
+</head>
+<body>
+<a href="index.html#main" class="skip-link">Zum Inhalt springen</a>
+<nav id="nav" aria-label="Hauptnavigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">fair<span>transition</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="unternehmen.html">Für Unternehmen</a></li>
+      <li><a href="ablauf.html">Ablauf</a></li>
+      <li><a href="wissenssicherung.html">Wissenssicherung</a></li>
+      <li><a href="vertraulichkeit.html">Vertraulichkeit</a></li>
+      <li><a href="ueber-fairtransition.html">Über uns</a></li>
+    </ul>
+    <a href="assessment.html" class="btn btn-primary btn-sm nav-cta" data-track="cta_nav">Situation einordnen</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+
+<section class="sub-hero" aria-labelledby="kt-h1">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="index.html">Startseite</a><span>›</span><span>Kontakt</span>
+    </nav>
+    <span class="kicker">Kontakt</span>
+    <h1 id="kt-h1">Erste Fragen sind willkommen.</h1>
+    <p>Ob Sie eine konkrete Situation klären möchten oder einfach verstehen wollen, ob FairTransition zu Ihrem Anliegen passt – melden Sie sich. Das Erstgespräch ist unverbindlich und kostenfrei.</p>
+  </div>
+</section>
+
+<section style="background:var(--white)" aria-labelledby="kt-form">
+  <div class="container">
+    <div class="kontakt-layout">
+      <div class="kontakt-form-col">
+        <h2 id="kt-form" style="font-size:1.3rem;font-weight:800;color:var(--blue);margin-bottom:20px">Direkte Nachricht</h2>
+        <form action="https://formspree.io/f/mrewjzrl" method="POST" id="kontakt-form" novalidate>
+          <input type="hidden" name="_subject" value="Kontaktanfrage – fairtransition.ch">
+          <input type="hidden" name="_language" value="de">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="k-name">Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="k-name" name="name" required autocomplete="name" placeholder="Ihr Name">
+            </div>
+            <div class="form-field">
+              <label for="k-firma">Unternehmen</label>
+              <input type="text" id="k-firma" name="unternehmen" autocomplete="organization" placeholder="Ihr Unternehmen (optional)">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="k-email">E-Mail <span aria-hidden="true">*</span></label>
+              <input type="email" id="k-email" name="_replyto" required autocomplete="email" placeholder="ihre@email.ch">
+            </div>
+            <div class="form-field">
+              <label for="k-tel">Telefon (optional)</label>
+              <input type="tel" id="k-tel" name="telefon" autocomplete="tel" placeholder="+41 …">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="k-betreff">Betreff</label>
+            <select id="k-betreff" name="betreff">
+              <option value="">Bitte wählen (optional)</option>
+              <option>Trennungsprozess begleiten</option>
+              <option>Wissenssicherung</option>
+              <option>Assessment kennenlernen</option>
+              <option>Frage zu Leistungen</option>
+              <option>Anderes</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="k-message">Nachricht</label>
+            <textarea id="k-message" name="message" rows="5" placeholder="Was möchten Sie klären? (optional – auch ein kurzes ‹Ich möchte mehr erfahren› genügt)"></textarea>
+          </div>
+          <div class="form-field">
+            <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;color:var(--text)">
+              <input type="checkbox" name="einwilligung" required style="width:auto;margin-top:3px">
+              <span style="font-size:.88rem">Ich bin damit einverstanden, dass FairTransition meine Angaben zur Bearbeitung meiner Anfrage verwendet. <a href="datenschutz.html">Datenschutz</a></span>
+            </label>
+          </div>
+          <div id="kontakt-status" style="display:none;font-size:.88rem;padding:12px 16px;border-radius:6px;margin-bottom:12px"></div>
+          <button type="submit" class="btn btn-primary" data-track="cta_kontakt_send">Nachricht senden</button>
+        </form>
+      </div>
+
+      <div class="kontakt-card">
+        <h2 style="font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:20px">Direktkontakt</h2>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div>
+            <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:4px">E-Mail</div>
+            <a href="mailto:kontakt@fairtransition.ch" style="color:var(--blue);font-weight:600;text-decoration:none" data-track="link_email">kontakt@fairtransition.ch</a>
+          </div>
+          <div>
+            <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:4px">Reaktionszeit</div>
+            <div style="font-size:.9rem;color:var(--text)">In der Regel innerhalb von 24 Stunden – werktags.</div>
+          </div>
+          <div>
+            <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:4px">Standort</div>
+            <div style="font-size:.9rem;color:var(--text)">Schweiz – tätig schweizweit</div>
+          </div>
+          <hr style="border:none;border-top:1px solid var(--gray-ln)">
+          <div>
+            <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:8px">Strukturierte Anfrage</div>
+            <p style="font-size:.85rem;color:var(--gray);line-height:1.6;margin-bottom:12px">Wenn Sie Ihre Situation bereits strukturiert beschreiben möchten, nutzen Sie das Assessment. Es dauert 4–6 Minuten und erleichtert die erste Einschätzung erheblich.</p>
+            <a href="assessment.html" class="btn btn-primary btn-sm" data-track="cta_kontakt_assess">Assessment starten</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">fair<span>transition</span></div>
+        <p>Faire Übergangsbegleitung für Schweizer Unternehmen.<br><em>Wenn Arbeit endet, beginnt Verantwortung.</em></p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="assessment.html">Fair Transition Assessment</a></li>
+          <li><a href="unternehmen.html">Für Unternehmen</a></li>
+          <li><a href="mitarbeitende.html">Begleitung für Mitarbeitende</a></li>
+          <li><a href="wissenssicherung.html">Wissenssicherung</a></li>
+          <li><a href="mandatscockpit.html">Mandatscockpit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informationen</h4>
+        <ul>
+          <li><a href="ablauf.html">Ablauf</a></li>
+          <li><a href="vertraulichkeit.html">Vertraulichkeit</a></li>
+          <li><a href="ueber-fairtransition.html">Über FairTransition</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="mailto:kontakt@fairtransition.ch">E-Mail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FairTransition – Faire Übergangsbegleitung · Schweiz</span>
+      <span>
+        <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+        <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+        <a href="mailto:kontakt@fairtransition.ch">kontakt@fairtransition.ch</a>
+      </span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

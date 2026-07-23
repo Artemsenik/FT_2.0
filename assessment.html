@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FairTransition | Fair Transition Assessment – Situation strukturiert einordnen</title>
+<meta name="description" content="Das Fair Transition Assessment hilft, eine schwierige personelle Situation strukturiert zu erfassen und den sinnvollsten nächsten Schritt zu bestimmen – vertraulich und ohne automatische Bewertung.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fairtransition.ch/assessment">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fairtransition.ch/assessment">
+<meta property="og:title" content="FairTransition | Fair Transition Assessment – Situation strukturiert einordnen">
+<meta property="og:description" content="Das Fair Transition Assessment hilft, eine schwierige personelle Situation strukturiert zu erfassen und den sinnvollsten nächsten Schritt zu bestimmen – vertraulich und ohne automatische Bewertung.">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://fairtransition.ch/media/fairtransition/og-image.webp">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/modern.css">
+<script>
+// Assessment multi-step logic (inline for this page)
+document.addEventListener('DOMContentLoaded', function() {
+  var current = 1, total = 6;
+  function showStep(n) {
+    document.querySelectorAll('.assessment-step').forEach(function(s){ s.classList.remove('active'); });
+    document.querySelectorAll('.progress-step').forEach(function(s,i){
+      s.classList.remove('active','done');
+      if(i+1<n) s.classList.add('done');
+      if(i+1===n) s.classList.add('active');
+    });
+    var el = document.getElementById('step-'+n);
+    if(el) el.classList.add('active');
+    current = n;
+    var nb = document.getElementById('next-btn');
+    var bb = document.getElementById('back-btn');
+    if(nb) nb.textContent = (n===total) ? 'Vertraulich absenden' : 'Weiter →';
+    if(bb) bb.style.visibility = (n===1) ? 'hidden' : 'visible';
+  }
+  document.querySelectorAll('.choice-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var grid = btn.closest('.choice-grid');
+      if(!grid) return;
+      grid.querySelectorAll('.choice-btn').forEach(function(b){ b.classList.remove('selected'); });
+      btn.classList.add('selected');
+    });
+  });
+  var nb = document.getElementById('next-btn');
+  var bb = document.getElementById('back-btn');
+  if(nb) nb.addEventListener('click', async function(){
+    if(current < total) { showStep(current+1); return; }
+    nb.disabled = true; nb.textContent = 'Wird übermittelt…';
+    var form = document.getElementById('assessment-form');
+    var fd = new FormData(form);
+    document.querySelectorAll('.choice-btn.selected').forEach(function(cb){
+      var n2 = cb.closest('[data-field]') ? cb.closest('[data-field]').dataset.field : 'auswahl';
+      fd.append(n2, cb.textContent.trim());
+    });
+    try {
+      var res = await fetch(form.action, { method:'POST', body:fd, headers:{'Accept':'application/json'} });
+      if(res.ok) {
+        document.querySelector('.assessment-form').innerHTML = '<div style="text-align:center;padding:40px 0"><div style="font-size:3rem;margin-bottom:16px">✓</div><h3 style="color:var(--blue);font-size:1.3rem;margin-bottom:12px">Vielen Dank für Ihre Angaben.</h3><p style="color:var(--gray);max-width:440px;margin:0 auto;line-height:1.7">FairTransition prüft die Situation persönlich und meldet sich innerhalb von 24 Stunden über den von Ihnen gewählten Kontaktweg.<br><br><em>Es erfolgt keine automatische Entscheidung oder Bewertung.</em></p></div>';
+      } else { throw new Error(); }
+    } catch(e) {
+      var st = document.getElementById('assessment-status');
+      if(st){ st.style.display='block'; st.textContent='Fehler beim Senden. Bitte schreiben Sie an kontakt@fairtransition.ch'; }
+      nb.disabled=false; nb.textContent='Vertraulich absenden';
+    }
+  });
+  if(bb) bb.addEventListener('click', function(){ if(current>1) showStep(current-1); });
+  showStep(1);
+});
+</script>
+</head>
+<body>
+<a href="index.html#main" class="skip-link">Zum Inhalt springen</a>
+<nav id="nav" aria-label="Hauptnavigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">fair<span>transition</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="unternehmen.html">Für Unternehmen</a></li>
+      <li><a href="ablauf.html">Ablauf</a></li>
+      <li><a href="wissenssicherung.html">Wissenssicherung</a></li>
+      <li><a href="vertraulichkeit.html">Vertraulichkeit</a></li>
+      <li><a href="ueber-fairtransition.html">Über uns</a></li>
+    </ul>
+    <a href="assessment.html" class="btn btn-primary btn-sm nav-cta" data-track="cta_nav">Situation einordnen</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+
+<section class="sub-hero" aria-labelledby="as-h1">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="index.html">Startseite</a><span>›</span><span>Assessment</span>
+    </nav>
+    <span class="kicker">Fair Transition Assessment</span>
+    <h1 id="as-h1">Die Situation verstehen, bevor der Prozess festgelegt wird.</h1>
+    <p>Das Fair Transition Assessment schafft eine strukturierte Entscheidungsgrundlage für Unternehmen, die eine personelle Situation fair und kontrolliert weiterführen möchten.</p>
+  </div>
+</section>
+
+<section style="background:var(--cream);padding:60px 0" aria-labelledby="as-form">
+  <div class="container">
+    <h2 id="as-form" style="text-align:center;font-size:1.3rem;font-weight:800;color:var(--blue);margin-bottom:8px">Situation vertraulich erfassen</h2>
+    <p style="text-align:center;color:var(--gray);font-size:.9rem;margin-bottom:36px">Bitte beschreiben Sie nur das, was für eine erste Einordnung erforderlich ist.</p>
+
+    <div class="assessment-form">
+      <div class="assessment-progress" role="list">
+        <div class="progress-step active" role="listitem">Ausgangslage</div>
+        <div class="progress-step" role="listitem">Zeitpunkt</div>
+        <div class="progress-step" role="listitem">Beteiligte</div>
+        <div class="progress-step" role="listitem">Anliegen</div>
+        <div class="progress-step" role="listitem">Details</div>
+        <div class="progress-step" role="listitem">Kontakt</div>
+      </div>
+
+      <form id="assessment-form" action="https://formspree.io/f/mrewjzrl" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Fair Transition Assessment – fairtransition.ch">
+        <input type="hidden" name="_language" value="de">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1">
+
+        <!-- Step 1 -->
+        <div class="assessment-step" id="step-1">
+          <h2>Was beschreibt die aktuelle Situation?</h2>
+          <p class="step-hint">Wählen Sie das Zutreffendste – eine Auswahl genügt.</p>
+          <div class="choice-grid" data-field="situation">
+            <button type="button" class="choice-btn">Einzelne Person</button>
+            <button type="button" class="choice-btn">Mehrere Personen</button>
+            <button type="button" class="choice-btn">Reorganisation</button>
+            <button type="button" class="choice-btn">Stellenabbau</button>
+            <button type="button" class="choice-btn">Sozialplan</button>
+            <button type="button" class="choice-btn">Nachfolge</button>
+            <button type="button" class="choice-btn">Drohender Wissensverlust</button>
+            <button type="button" class="choice-btn">Noch unklar</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="assessment-step" id="step-2">
+          <h2>Wann besteht Handlungsbedarf?</h2>
+          <p class="step-hint">Wie dringend ist die Situation?</p>
+          <div class="choice-grid" data-field="zeitpunkt">
+            <button type="button" class="choice-btn">Sofort / bereits akut</button>
+            <button type="button" class="choice-btn">Innerhalb eines Monats</button>
+            <button type="button" class="choice-btn">Innerhalb von drei Monaten</button>
+            <button type="button" class="choice-btn">Mittelfristig planbar</button>
+            <button type="button" class="choice-btn">Noch offen</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="assessment-step" id="step-3">
+          <h2>Wer ist beteiligt?</h2>
+          <p class="step-hint">Mehrfachauswahl möglich – klicken Sie alle Zutreffenden an.</p>
+          <div class="choice-grid" data-field="beteiligte" style="grid-template-columns:1fr 1fr">
+            <button type="button" class="choice-btn">Geschäftsleitung</button>
+            <button type="button" class="choice-btn">HR / People Ops</button>
+            <button type="button" class="choice-btn">Direkte Führungskraft</button>
+            <button type="button" class="choice-btn">Betroffene Person</button>
+            <button type="button" class="choice-btn">Arbeitnehmervertretung</button>
+            <button type="button" class="choice-btn">Externe Rechtsberatung</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="assessment-step" id="step-4">
+          <h2>Was ist Ihr Hauptanliegen?</h2>
+          <p class="step-hint">Was soll als Erstes angegangen werden?</p>
+          <div class="choice-grid" data-field="anliegen">
+            <button type="button" class="choice-btn">Situation einordnen</button>
+            <button type="button" class="choice-btn">Trennung vorbereiten</button>
+            <button type="button" class="choice-btn">Mitarbeiterbegleitung</button>
+            <button type="button" class="choice-btn">Konfliktrisiko senken</button>
+            <button type="button" class="choice-btn">Wissen sichern</button>
+            <button type="button" class="choice-btn">Nachfolge vorbereiten</button>
+            <button type="button" class="choice-btn">Kommunikation planen</button>
+            <button type="button" class="choice-btn">Sozialplan-Leistung</button>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="assessment-step" id="step-5">
+          <h2>Was sollten wir über die Situation wissen?</h2>
+          <p class="step-hint">Beschreiben Sie kurz, was für eine erste Einordnung relevant ist. Bitte übermitteln Sie keine unnötigen Gesundheitsdaten oder besonders sensiblen Personendaten.</p>
+          <div class="form-field" style="margin-bottom:16px">
+            <label for="as-text">Ihre Beschreibung</label>
+            <textarea id="as-text" name="beschreibung" rows="5" placeholder="Beschreiben Sie die Situation in Ihren eigenen Worten…"></textarea>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="assessment-step" id="step-6">
+          <h2>Wie dürfen wir Sie kontaktieren?</h2>
+          <p class="step-hint">Damit wir uns persönlich bei Ihnen melden können.</p>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="as-name">Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="as-name" name="name" required autocomplete="name" placeholder="Ihr Name">
+              </div>
+              <div class="form-field">
+                <label for="as-firma">Unternehmen</label>
+                <input type="text" id="as-firma" name="unternehmen" autocomplete="organization" placeholder="Ihr Unternehmen">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="as-funktion">Funktion</label>
+                <input type="text" id="as-funktion" name="funktion" placeholder="z.B. HR-Leitung, CEO">
+              </div>
+              <div class="form-field">
+                <label for="as-tel">Telefon (optional)</label>
+                <input type="tel" id="as-tel" name="telefon" autocomplete="tel" placeholder="+41 …">
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="as-email">E-Mail <span aria-hidden="true">*</span></label>
+              <input type="email" id="as-email" name="_replyto" required autocomplete="email" placeholder="ihre@email.ch">
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="as-kontaktart">Bevorzugte Kontaktart</label>
+                <select id="as-kontaktart" name="kontaktart">
+                  <option value="">Bitte wählen</option>
+                  <option>E-Mail</option>
+                  <option>Telefon</option>
+                  <option>Beides möglich</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="as-zeitfenster">Bevorzugtes Zeitfenster</label>
+                <select id="as-zeitfenster" name="zeitfenster">
+                  <option value="">Bitte wählen</option>
+                  <option>Morgens 8–12 Uhr</option>
+                  <option>Mittags 12–14 Uhr</option>
+                  <option>Nachmittags 14–18 Uhr</option>
+                  <option>Flexibel</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;color:var(--text)">
+                <input type="checkbox" name="einwilligung" required style="width:auto;margin-top:3px">
+                <span style="font-size:.88rem">Ich bin damit einverstanden, dass FairTransition meine Angaben zur Bearbeitung meiner Anfrage verwendet. Meine Daten werden vertraulich behandelt und nicht ohne meine Zustimmung weitergegeben. Ich kann meine Einwilligung jederzeit widerrufen. <a href="datenschutz.html">Datenschutz</a></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <p id="assessment-status" style="display:none;color:#991b1b;font-size:.88rem;margin-top:12px"></p>
+      </form>
+
+      <div class="assessment-nav">
+        <button type="button" id="back-btn" class="btn-back" style="visibility:hidden">← Zurück</button>
+        <button type="button" id="next-btn" class="btn btn-primary">Weiter →</button>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:.8rem;color:var(--gray);margin-top:20px">Die Angaben werden nicht automatisch bewertet und nicht ohne Ihre Zustimmung weitergegeben.</p>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">fair<span>transition</span></div>
+        <p>Faire Übergangsbegleitung für Schweizer Unternehmen.<br><em>Wenn Arbeit endet, beginnt Verantwortung.</em></p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="assessment.html">Fair Transition Assessment</a></li>
+          <li><a href="unternehmen.html">Für Unternehmen</a></li>
+          <li><a href="mitarbeitende.html">Begleitung für Mitarbeitende</a></li>
+          <li><a href="wissenssicherung.html">Wissenssicherung</a></li>
+          <li><a href="mandatscockpit.html">Mandatscockpit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informationen</h4>
+        <ul>
+          <li><a href="ablauf.html">Ablauf</a></li>
+          <li><a href="vertraulichkeit.html">Vertraulichkeit</a></li>
+          <li><a href="ueber-fairtransition.html">Über FairTransition</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="mailto:kontakt@fairtransition.ch">E-Mail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FairTransition – Faire Übergangsbegleitung · Schweiz</span>
+      <span>
+        <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+        <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+        <a href="mailto:kontakt@fairtransition.ch">kontakt@fairtransition.ch</a>
+      </span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
