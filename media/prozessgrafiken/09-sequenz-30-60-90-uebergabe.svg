@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">30–60–90: Wissen sichtbar machen, anwenden, übernehmen</title>
+  <desc id="desc">Dreiphasige 30-60-90-Tage-Sequenz für Wissensübergabe mit Qualitätsgates.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C9A96E" />
+    </marker>
+    <style>
+      .kicker{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:17px;font-weight:700;letter-spacing:2.3px;fill:#C9A96E}
+      .title{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:44px;font-weight:650;letter-spacing:-0.8px;fill:#152238}
+      .subtitle{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:20px;font-weight:400;fill:#667085}
+      .h2{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:25px;font-weight:650;fill:#152238}
+      .h3{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:21px;font-weight:650;fill:#152238}
+      .body{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:19px;font-weight:400;fill:#24303F}
+      .small{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:16px;font-weight:400;fill:#667085}
+      .micro{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:14px;font-weight:500;fill:#667085}
+      .num{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:18px;font-weight:700;fill:#C9A96E}
+      .white{fill:#FFFFFF}
+      .rule{stroke:#D9D2C6;stroke-width:1.5}
+      .connector{stroke:#C9A96E;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .softline{stroke:#D9D2C6;stroke-width:2;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#F6F3EE" />
+  
+    <text x="80" y="70" class="kicker">FAIRTRANSITION · PROZESSSEQUENZ 03</text>
+    <text x="80" y="128" class="title">30–60–90: Wissen sichtbar machen, anwenden, übernehmen</text>
+    <text x="80" y="169" class="subtitle" text-anchor="start"><tspan x="80" dy="0">Eine gestufte Übergabe verbindet Dokumentation, Tandemarbeit und einen belastbaren Selbstständigkeitsnachweis.</tspan></text>
+    <line x1="80" y1="205" x2="1520" y2="205" class="rule" />
+  
+    <rect x="80" y="270" width="450" height="420" rx="28" fill="#FCFBF8" stroke="#D9D2C6" filter="url(#shadow)" />
+    <rect x="80" y="270" width="450" height="86" rx="28" fill="#152238" />
+    <text x="120" y="323" class="h3 white">Tag 0–30 · Sichtbar machen</text>
+    <text x="125" y="415" class="body" text-anchor="start"><tspan x="125" dy="0">Schlüsselaufgaben und Risiken</tspan><tspan x="125" dy="39">Ausnahmen und Entscheidungslogik</tspan><tspan x="125" dy="39">Wissenslandkarte erstellen</tspan><tspan x="125" dy="39">Prioritäten bestätigen</tspan></text>
+    <rect x="125" y="595" width="360" height="56" rx="28" fill="#E7ECF2" />
+    <text x="305" y="630" class="h3" text-anchor="middle">Gate 1 · Vollständigkeit</text>
+
+    <rect x="575" y="270" width="450" height="420" rx="28" fill="#FCFBF8" stroke="#D9D2C6" filter="url(#shadow)" />
+    <rect x="575" y="270" width="450" height="86" rx="28" fill="#C9A96E" />
+    <text x="615" y="323" class="h3 white">Tag 31–60 · Im Tandem anwenden</text>
+    <text x="620" y="415" class="body" text-anchor="start"><tspan x="620" dy="0">Reale Fälle gemeinsam bearbeiten</tspan><tspan x="620" dy="39">Entscheidungen und Varianten</tspan><tspan x="620" dy="39">dokumentieren</tspan><tspan x="620" dy="39">Anleitungen im Kontext verbessern</tspan></text>
+    <rect x="620" y="595" width="360" height="56" rx="28" fill="#F1E6D1" />
+    <text x="800" y="630" class="h3" text-anchor="middle">Gate 2 · Praxistauglichkeit</text>
+
+    <rect x="1070" y="270" width="450" height="420" rx="28" fill="#FCFBF8" stroke="#D9D2C6" filter="url(#shadow)" />
+    <rect x="1070" y="270" width="450" height="86" rx="28" fill="#58705F" />
+    <text x="1110" y="323" class="h3 white">Tag 61–90 · Übernahme beweisen</text>
+    <text x="1115" y="415" class="body" text-anchor="start"><tspan x="1115" dy="0">Repräsentative Fälle selbstständig lösen</tspan><tspan x="1115" dy="39">Lücken und Eskalationswege schliessen</tspan><tspan x="1115" dy="39">Übergabe formell abnehmen</tspan><tspan x="1115" dy="39">Im System verankern</tspan></text>
+    <rect x="1115" y="595" width="360" height="56" rx="28" fill="#E6ECE7" />
+    <text x="1295" y="630" class="h3" text-anchor="middle">Gate 3 · Selbstständigkeit</text>
+
+    <path d="M530 480 H565" class="connector" />
+    <path d="M1025 480 H1060" class="connector" />
+    <rect x="250" y="745" width="1100" height="70" rx="35" fill="#152238" />
+    <text x="800" y="788" class="h3 white" text-anchor="middle">Abschluss erst, wenn die Aufgabe ohne verdeckte Abhängigkeit übernommen werden kann.</text>
+    <text x="80" y="862" class="micro">FairTransition-Praxisstandard · Zeitfenster sind Orientierung; Komplexität und Verfügbarkeit bestimmen das tatsächliche Tempo.</text>
+  </svg>

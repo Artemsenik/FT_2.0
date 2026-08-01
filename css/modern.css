@@ -338,3 +338,27 @@ footer .footer-bottom, footer .footer-bottom a{color:rgba(255,255,255,.78)}
       to{transform:scale(1.06) translateY(1.5%)}}
   }
 }
+
+/* ══ Prozessgrafiken (SVG-Infografiken, Paket v1.0.0) ══════════
+   Als <img src="*.svg"> eingebunden: scharf auf jedem Display,
+   ~5 KB pro Grafik, eigenes title/desc im SVG (screenreaderfähig).
+   Auf schmalen Viewports wird die Grafik nicht beschnitten,
+   sondern skaliert; die Kernaussage steht zusätzlich als Text
+   in der Bildunterschrift. */
+.process-visual{margin:clamp(28px,5vh,56px) auto 0;max-width:900px}
+.process-visual img{display:block;width:100%;height:auto;
+  border-radius:clamp(12px,1.5vw,20px);background:var(--white);
+  border:1px solid #e3e7ec}
+.process-visual figcaption{margin-top:12px;font-size:.85rem;line-height:1.6;
+  color:var(--gray);max-width:720px}
+.process-visual figcaption b{color:var(--ochre-ink,#7E6130);font-weight:600}
+:is(.jr-dark,.jr-invite,.sub-hero,.fc-dark,.fc-impact) .process-visual img{
+  background:rgba(255,255,255,.96);border-color:rgba(255,255,255,.18)}
+:is(.jr-dark,.jr-invite,.fc-dark,.fc-impact) .process-visual figcaption{
+  color:rgba(255,255,255,.75)}
+:is(.jr-dark,.jr-invite,.fc-dark,.fc-impact) .process-visual figcaption b{color:var(--ochre)}
+@media (max-width:600px){
+  .process-visual{margin-top:24px}
+  .process-visual figcaption{font-size:.82rem}
+}
+.pv-src{display:inline-block;margin-top:4px;font-size:.78rem;opacity:.75;font-style:italic}

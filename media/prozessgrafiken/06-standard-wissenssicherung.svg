@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Wissenssicherung mit Übernahmenachweis</title>
+  <desc id="desc">Sechsstufiger Standardprozess zur Identifikation, Erfassung, Anwendung, Validierung und Verankerung kritischen Wissens.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C9A96E" />
+    </marker>
+    <style>
+      .kicker{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:17px;font-weight:700;letter-spacing:2.3px;fill:#C9A96E}
+      .title{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:44px;font-weight:650;letter-spacing:-0.8px;fill:#152238}
+      .subtitle{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:20px;font-weight:400;fill:#667085}
+      .h2{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:25px;font-weight:650;fill:#152238}
+      .h3{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:21px;font-weight:650;fill:#152238}
+      .body{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:19px;font-weight:400;fill:#24303F}
+      .small{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:16px;font-weight:400;fill:#667085}
+      .micro{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:14px;font-weight:500;fill:#667085}
+      .num{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:18px;font-weight:700;fill:#C9A96E}
+      .white{fill:#FFFFFF}
+      .rule{stroke:#D9D2C6;stroke-width:1.5}
+      .connector{stroke:#C9A96E;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .softline{stroke:#D9D2C6;stroke-width:2;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#F6F3EE" />
+  
+    <text x="80" y="70" class="kicker">FAIRTRANSITION · STANDARDPROZESS 03</text>
+    <text x="80" y="128" class="title">Wissenssicherung mit Übernahmenachweis</text>
+    <text x="80" y="169" class="subtitle" text-anchor="start"><tspan x="80" dy="0">Dokumentation allein genügt nicht. Wissen gilt erst als übertragen, wenn es im Arbeitskontext sicher angewendet wird.</tspan></text>
+    <line x1="80" y1="205" x2="1520" y2="205" class="rule" />
+  
+    <path d="M170 450 H1430" stroke="#D9D2C6" stroke-width="8" stroke-linecap="round" />
+    
+      <circle cx="180" cy="450" r="58" fill="#152238" filter="url(#shadow)" />
+      <text x="180" y="458" class="num white" text-anchor="middle">01</text>
+      <text x="180" y="555" class="h3" text-anchor="middle">Risiko</text>
+      <text x="180" y="584" class="h3" text-anchor="middle">sichtbar machen</text>
+      <rect x="92" y="625" width="176" height="48" rx="24" fill="#E7ECF2" />
+      <text x="180" y="655" class="small" text-anchor="middle">Risikolandkarte</text>
+      <circle cx="420" cy="450" r="58" fill="#152238" filter="url(#shadow)" />
+      <text x="420" y="458" class="num white" text-anchor="middle">02</text>
+      <text x="420" y="555" class="h3" text-anchor="middle">Kritisches Wissen</text>
+      <text x="420" y="584" class="h3" text-anchor="middle">priorisieren</text>
+      <rect x="332" y="625" width="176" height="48" rx="24" fill="#E7ECF2" />
+      <text x="420" y="655" class="small" text-anchor="middle">Wissensmatrix</text>
+      <circle cx="660" cy="450" r="58" fill="#152238" filter="url(#shadow)" />
+      <text x="660" y="458" class="num white" text-anchor="middle">03</text>
+      <text x="660" y="555" class="h3" text-anchor="middle">Erfahrung</text>
+      <text x="660" y="584" class="h3" text-anchor="middle">externalisieren</text>
+      <rect x="572" y="625" width="176" height="48" rx="24" fill="#E7ECF2" />
+      <text x="660" y="655" class="small" text-anchor="middle">Playbook</text>
+      <circle cx="900" cy="450" r="58" fill="#152238" filter="url(#shadow)" />
+      <text x="900" y="458" class="num white" text-anchor="middle">04</text>
+      <text x="900" y="555" class="h3" text-anchor="middle">Im Tandem</text>
+      <text x="900" y="584" class="h3" text-anchor="middle">anwenden</text>
+      <rect x="812" y="625" width="176" height="48" rx="24" fill="#E7ECF2" />
+      <text x="900" y="655" class="small" text-anchor="middle">Praxisfälle</text>
+      <circle cx="1140" cy="450" r="58" fill="#C9A96E" filter="url(#shadow)" />
+      <text x="1140" y="458" class="num white" text-anchor="middle">05</text>
+      <text x="1140" y="555" class="h3" text-anchor="middle">Übernahme</text>
+      <text x="1140" y="584" class="h3" text-anchor="middle">validieren</text>
+      <rect x="1052" y="625" width="176" height="48" rx="24" fill="#F1E6D1" />
+      <text x="1140" y="655" class="small" text-anchor="middle">Nachweis</text>
+      <circle cx="1380" cy="450" r="58" fill="#152238" filter="url(#shadow)" />
+      <text x="1380" y="458" class="num white" text-anchor="middle">06</text>
+      <text x="1380" y="555" class="h3" text-anchor="middle">Im System</text>
+      <text x="1380" y="584" class="h3" text-anchor="middle">verankern</text>
+      <rect x="1292" y="625" width="176" height="48" rx="24" fill="#E7ECF2" />
+      <text x="1380" y="655" class="small" text-anchor="middle">Standard</text>
+
+    <rect x="230" y="730" width="1140" height="84" rx="42" fill="#FCFBF8" stroke="#C9A96E" stroke-width="2" />
+    <text x="800" y="766" class="micro" text-anchor="middle">QUALITÄTSKRITERIUM</text>
+    <text x="800" y="798" class="h3" text-anchor="middle">Die übernehmende Person löst repräsentative Fälle selbstständig und begründet ihre Entscheidungen.</text>
+    <text x="80" y="862" class="micro">FairTransition-Praxisstandard · Orientiert am Wissenstransfer über Menschen, Aufgaben und Werkzeuge nach Argote und Ingram (2000).</text>
+  </svg>

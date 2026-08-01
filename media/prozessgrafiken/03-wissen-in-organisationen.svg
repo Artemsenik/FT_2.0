@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Wo Erfahrungswissen tatsächlich verankert ist</title>
+  <desc id="desc">Dreiecksmodell mit Menschen, Aufgaben und Werkzeugen als Wissensreservoirs und Erfahrungswissen in deren Zusammenspiel.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C9A96E" />
+    </marker>
+    <style>
+      .kicker{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:17px;font-weight:700;letter-spacing:2.3px;fill:#C9A96E}
+      .title{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:44px;font-weight:650;letter-spacing:-0.8px;fill:#152238}
+      .subtitle{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:20px;font-weight:400;fill:#667085}
+      .h2{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:25px;font-weight:650;fill:#152238}
+      .h3{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:21px;font-weight:650;fill:#152238}
+      .body{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:19px;font-weight:400;fill:#24303F}
+      .small{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:16px;font-weight:400;fill:#667085}
+      .micro{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:14px;font-weight:500;fill:#667085}
+      .num{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:18px;font-weight:700;fill:#C9A96E}
+      .white{fill:#FFFFFF}
+      .rule{stroke:#D9D2C6;stroke-width:1.5}
+      .connector{stroke:#C9A96E;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .softline{stroke:#D9D2C6;stroke-width:2;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#F6F3EE" />
+  
+    <text x="80" y="70" class="kicker">FAIRTRANSITION · THEORETISCHE GRUNDLAGE 03</text>
+    <text x="80" y="128" class="title">Wo Erfahrungswissen tatsächlich verankert ist</text>
+    <text x="80" y="169" class="subtitle" text-anchor="start"><tspan x="80" dy="0">Kritisches Wissen liegt selten nur in Dokumenten. Es entsteht im Zusammenspiel von Menschen, Aufgaben und Werkzeugen.</tspan></text>
+    <line x1="80" y1="205" x2="1520" y2="205" class="rule" />
+  
+    <path d="M800 285 L390 685 L1210 685 Z" fill="none" stroke="#D9D2C6" stroke-width="4" />
+    <path d="M800 325 L435 665" stroke="#C9A96E" stroke-width="3" stroke-dasharray="8 9" />
+    <path d="M800 325 L1165 665" stroke="#C9A96E" stroke-width="3" stroke-dasharray="8 9" />
+    <path d="M470 685 L1130 685" stroke="#C9A96E" stroke-width="3" stroke-dasharray="8 9" />
+
+    <circle cx="800" cy="310" r="105" fill="#152238" filter="url(#shadow)" />
+    <text x="800" y="298" class="kicker" text-anchor="middle">RESERVOIR 01</text>
+    <text x="800" y="342" class="h2 white" text-anchor="middle">Menschen</text>
+
+    <circle cx="390" cy="685" r="105" fill="#C9A96E" filter="url(#shadow)" />
+    <text x="390" y="673" class="kicker white" text-anchor="middle">RESERVOIR 02</text>
+    <text x="390" y="717" class="h2 white" text-anchor="middle">Aufgaben</text>
+
+    <circle cx="1210" cy="685" r="105" fill="#58705F" filter="url(#shadow)" />
+    <text x="1210" y="673" class="kicker white" text-anchor="middle">RESERVOIR 03</text>
+    <text x="1210" y="717" class="h2 white" text-anchor="middle">Werkzeuge</text>
+
+    <circle cx="800" cy="565" r="150" fill="#FCFBF8" stroke="#C9A96E" stroke-width="4" filter="url(#shadow)" />
+    <text x="800" y="530" class="kicker" text-anchor="middle">IM ZUSAMMENSPIEL</text>
+    <text x="800" y="574" class="h2" text-anchor="middle">Erfahrungswissen</text>
+    <text x="800" y="616" class="small" text-anchor="middle"><tspan x="800" dy="0">Wer macht was – womit,</tspan><tspan x="800" dy="25">wann und warum?</tspan></text>
+
+    <rect x="85" y="275" width="265" height="160" rx="22" fill="#FCFBF8" stroke="#D9D2C6" />
+    <text x="120" y="322" class="h3">Menschen</text>
+    <text x="120" y="360" class="small" text-anchor="start"><tspan x="120" dy="0">Urteilskraft</tspan><tspan x="120" dy="26">Ausnahmen</tspan><tspan x="120" dy="26">Beziehungswissen</tspan></text>
+
+    <rect x="1250" y="275" width="265" height="160" rx="22" fill="#FCFBF8" stroke="#D9D2C6" />
+    <text x="1285" y="322" class="h3">Werkzeuge</text>
+    <text x="1285" y="360" class="small" text-anchor="start"><tspan x="1285" dy="0">Software</tspan><tspan x="1285" dy="26">Maschinen</tspan><tspan x="1285" dy="26">Dokumente</tspan></text>
+
+    <rect x="668" y="740" width="264" height="84" rx="20" fill="#F1E6D1" />
+    <text x="800" y="777" class="micro" text-anchor="middle">TRANSFER BEWEIST SICH</text>
+    <text x="800" y="806" class="h3" text-anchor="middle">in der Anwendung</text>
+    <text x="80" y="868" class="micro">Grundlage: Argote und Ingram (2000), Wissen in Menschen, Aufgaben, Werkzeugen und ihren Netzwerken · Praxisübertragung: FairTransition</text>
+  </svg>

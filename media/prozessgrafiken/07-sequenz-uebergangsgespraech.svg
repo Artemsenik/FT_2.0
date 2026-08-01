@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Sequenz eines klaren und respektvollen Übergangsgesprächs</title>
+  <desc id="desc">Acht Schritte für ein Übergangsgespräch von der Rahmensetzung bis zur Dokumentation.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C9A96E" />
+    </marker>
+    <style>
+      .kicker{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:17px;font-weight:700;letter-spacing:2.3px;fill:#C9A96E}
+      .title{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:44px;font-weight:650;letter-spacing:-0.8px;fill:#152238}
+      .subtitle{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:20px;font-weight:400;fill:#667085}
+      .h2{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:25px;font-weight:650;fill:#152238}
+      .h3{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:21px;font-weight:650;fill:#152238}
+      .body{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:19px;font-weight:400;fill:#24303F}
+      .small{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:16px;font-weight:400;fill:#667085}
+      .micro{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:14px;font-weight:500;fill:#667085}
+      .num{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:18px;font-weight:700;fill:#C9A96E}
+      .white{fill:#FFFFFF}
+      .rule{stroke:#D9D2C6;stroke-width:1.5}
+      .connector{stroke:#C9A96E;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .softline{stroke:#D9D2C6;stroke-width:2;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#F6F3EE" />
+  
+    <text x="80" y="70" class="kicker">FAIRTRANSITION · PROZESSSEQUENZ 01</text>
+    <text x="80" y="128" class="title">Sequenz eines klaren und respektvollen Übergangsgesprächs</text>
+    <text x="80" y="169" class="subtitle" text-anchor="start"><tspan x="80" dy="0">Die Reihenfolge verhindert, dass Empathie die Botschaft verwässert oder Klarheit die Würde verletzt.</tspan></text>
+    <line x1="80" y1="205" x2="1520" y2="205" class="rule" />
+  
+    <rect x="80" y="250" width="1440" height="540" rx="28" fill="#FCFBF8" stroke="#D9D2C6" />
+    <line x1="165" y1="385" x2="1435" y2="385" stroke="#D9D2C6" stroke-width="5" />
+    
+      <circle cx="170" cy="385" r="42" fill="#152238" />
+      <text x="170" y="392" class="num white" text-anchor="middle">01</text>
+      <text x="170" y="475" class="h3" text-anchor="middle">Rahmen</text>
+      <text x="170" y="504" class="h3" text-anchor="middle">setzen</text>
+      <text x="170" y="558" class="small" text-anchor="middle"><tspan x="170" dy="0">Ruhiger Ort</tspan><tspan x="170" dy="26">Rollen klar</tspan></text>
+      <circle cx="350" cy="385" r="42" fill="#C9A96E" />
+      <text x="350" y="392" class="num white" text-anchor="middle">02</text>
+      <text x="350" y="475" class="h3" text-anchor="middle">Entscheidung</text>
+      <text x="350" y="504" class="h3" text-anchor="middle">benennen</text>
+      <text x="350" y="558" class="small" text-anchor="middle"><tspan x="350" dy="0">Eindeutig</tspan><tspan x="350" dy="26">ohne Umwege</tspan></text>
+      <circle cx="530" cy="385" r="42" fill="#152238" />
+      <text x="530" y="392" class="num white" text-anchor="middle">03</text>
+      <text x="530" y="475" class="h3" text-anchor="middle">Sachlich</text>
+      <text x="530" y="504" class="h3" text-anchor="middle">begründen</text>
+      <text x="530" y="558" class="small" text-anchor="middle"><tspan x="530" dy="0">Relevante Fakten</tspan></text>
+      <circle cx="710" cy="385" r="42" fill="#152238" />
+      <text x="710" y="392" class="num white" text-anchor="middle">04</text>
+      <text x="710" y="475" class="h3" text-anchor="middle">Raum</text>
+      <text x="710" y="504" class="h3" text-anchor="middle">lassen</text>
+      <text x="710" y="558" class="small" text-anchor="middle"><tspan x="710" dy="0">Pause</tspan><tspan x="710" dy="26">Reaktion zulassen</tspan></text>
+      <circle cx="890" cy="385" r="42" fill="#152238" />
+      <text x="890" y="392" class="num white" text-anchor="middle">05</text>
+      <text x="890" y="475" class="h3" text-anchor="middle">Verständnis</text>
+      <text x="890" y="504" class="h3" text-anchor="middle">sichern</text>
+      <text x="890" y="558" class="small" text-anchor="middle"><tspan x="890" dy="0">Kernaussage prüfen</tspan></text>
+      <circle cx="1070" cy="385" r="42" fill="#152238" />
+      <text x="1070" y="392" class="num white" text-anchor="middle">06</text>
+      <text x="1070" y="475" class="h3" text-anchor="middle">Unterstützung</text>
+      <text x="1070" y="504" class="h3" text-anchor="middle">klären</text>
+      <text x="1070" y="558" class="small" text-anchor="middle"><tspan x="1070" dy="0">Optionen</tspan><tspan x="1070" dy="26">Zuständigkeiten</tspan></text>
+      <circle cx="1250" cy="385" r="42" fill="#152238" />
+      <text x="1250" y="392" class="num white" text-anchor="middle">07</text>
+      <text x="1250" y="475" class="h3" text-anchor="middle">Nächsten Schritt</text>
+      <text x="1250" y="504" class="h3" text-anchor="middle">fixieren</text>
+      <text x="1250" y="558" class="small" text-anchor="middle"><tspan x="1250" dy="0">Wer</tspan><tspan x="1250" dy="26">was</tspan><tspan x="1250" dy="26">bis wann</tspan></text>
+      <circle cx="1430" cy="385" r="42" fill="#152238" />
+      <text x="1430" y="392" class="num white" text-anchor="middle">08</text>
+      <text x="1430" y="475" class="h3" text-anchor="middle">Dokumentieren</text>
+      
+      <text x="1430" y="558" class="small" text-anchor="middle"><tspan x="1430" dy="0">Abgestimmte Fakten</tspan></text>
+
+    <rect x="145" y="650" width="590" height="92" rx="22" fill="#E7ECF2" />
+    <text x="185" y="689" class="micro">KLARHEIT</text>
+    <text x="185" y="721" class="h3">Die Entscheidung bleibt eindeutig.</text>
+    <rect x="865" y="650" width="590" height="92" rx="22" fill="#F1E6D1" />
+    <text x="905" y="689" class="micro">WÜRDE</text>
+    <text x="905" y="721" class="h3">Die Person behält Raum und Handlungsmöglichkeiten.</text>
+    <text x="80" y="850" class="micro">FairTransition-Praxisstandard · Gesprächsführung ersetzt keine arbeitsrechtliche Prüfung oder formelle HR-Verantwortung.</text>
+  </svg>

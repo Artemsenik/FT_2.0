@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Rollen- und Vertraulichkeitsarchitektur</title>
+  <desc id="desc">Fünf Rollen mit klaren Verantwortungen sowie drei verbindliche Regeln für Vertraulichkeit.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C9A96E" />
+    </marker>
+    <style>
+      .kicker{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:17px;font-weight:700;letter-spacing:2.3px;fill:#C9A96E}
+      .title{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:44px;font-weight:650;letter-spacing:-0.8px;fill:#152238}
+      .subtitle{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:20px;font-weight:400;fill:#667085}
+      .h2{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:25px;font-weight:650;fill:#152238}
+      .h3{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:21px;font-weight:650;fill:#152238}
+      .body{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:19px;font-weight:400;fill:#24303F}
+      .small{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:16px;font-weight:400;fill:#667085}
+      .micro{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:14px;font-weight:500;fill:#667085}
+      .num{font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:18px;font-weight:700;fill:#C9A96E}
+      .white{fill:#FFFFFF}
+      .rule{stroke:#D9D2C6;stroke-width:1.5}
+      .connector{stroke:#C9A96E;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .softline{stroke:#D9D2C6;stroke-width:2;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#F6F3EE" />
+  
+    <text x="80" y="70" class="kicker">FAIRTRANSITION · STANDARDPROZESS 02</text>
+    <text x="80" y="128" class="title">Rollen- und Vertraulichkeitsarchitektur</text>
+    <text x="80" y="169" class="subtitle" text-anchor="start"><tspan x="80" dy="0">Jede Rolle erhält genau die Information, die sie für ihren Auftrag und zum richtigen Zeitpunkt benötigt.</tspan></text>
+    <line x1="80" y1="205" x2="1520" y2="205" class="rule" />
+  
+    <rect x="80" y="250" width="1440" height="390" rx="28" fill="#FCFBF8" stroke="#D9D2C6" filter="url(#shadow)" />
+    
+      <rect x="105" y="295" width="250" height="285" rx="22" fill="#F6F3EE" stroke="#D9D2C6" />
+      <circle cx="139" cy="337" r="17" fill="#152238" />
+      <text x="167" y="345" class="h3">GL / HR</text>
+      <text x="133" y="405" class="body" text-anchor="start"><tspan x="133" dy="0">Mandat, Entscheidung,</tspan><tspan x="133" dy="29">Rahmen und Freigaben</tspan></text>
+      <line x1="133" y1="490" x2="327" y2="490" stroke="#D9D2C6" />
+      <text x="133" y="530" class="small">Klare Zuständigkeit</text>
+      <rect x="390" y="295" width="250" height="285" rx="22" fill="#152238" stroke="#152238" />
+      <circle cx="424" cy="337" r="17" fill="#C9A96E" />
+      <text x="452" y="345" class="h3 white">FairTransition</text>
+      <text x="418" y="405" class="body white" text-anchor="start"><tspan x="418" dy="0">Prozessführung,</tspan><tspan x="418" dy="29">Schutz, Koordination,</tspan><tspan x="418" dy="29">Qualitätssicherung</tspan></text>
+      <line x1="418" y1="490" x2="612" y2="490" stroke="#657188" />
+      <text x="418" y="530" class="small white">Klare Zuständigkeit</text>
+      <rect x="675" y="295" width="250" height="285" rx="22" fill="#F6F3EE" stroke="#D9D2C6" />
+      <circle cx="709" cy="337" r="17" fill="#152238" />
+      <text x="737" y="345" class="h3">Führung</text>
+      <text x="703" y="405" class="body" text-anchor="start"><tspan x="703" dy="0">Operative Planung,</tspan><tspan x="703" dy="29">Ressourcen und Übergabe</tspan></text>
+      <line x1="703" y1="490" x2="897" y2="490" stroke="#D9D2C6" />
+      <text x="703" y="530" class="small">Klare Zuständigkeit</text>
+      <rect x="960" y="295" width="250" height="285" rx="22" fill="#F1E6D1" stroke="#D9D2C6" />
+      <circle cx="994" cy="337" r="17" fill="#152238" />
+      <text x="1022" y="345" class="h3">Mitarbeitende</text>
+      <text x="988" y="405" class="body" text-anchor="start"><tspan x="988" dy="0">Perspektive, Optionen,</tspan><tspan x="988" dy="29">Entscheidungen</tspan><tspan x="988" dy="29">und Mitwirkung</tspan></text>
+      <line x1="988" y1="490" x2="1182" y2="490" stroke="#D9D2C6" />
+      <text x="988" y="530" class="small">Klare Zuständigkeit</text>
+      <rect x="1245" y="295" width="250" height="285" rx="22" fill="#F6F3EE" stroke="#D9D2C6" />
+      <circle cx="1279" cy="337" r="17" fill="#152238" />
+      <text x="1307" y="345" class="h3">Team / Nachfolge</text>
+      <text x="1273" y="405" class="body" text-anchor="start"><tspan x="1273" dy="0">Aufgabenübernahme,</tspan><tspan x="1273" dy="29">Tandem und Validierung</tspan></text>
+      <line x1="1273" y1="490" x2="1467" y2="490" stroke="#D9D2C6" />
+      <text x="1273" y="530" class="small">Klare Zuständigkeit</text>
+
+    <text x="80" y="710" class="h2">Drei verbindliche Informationsregeln</text>
+    
+      <rect x="100" y="748" width="420" height="94" rx="20" fill="#152238" />
+      <text x="130" y="786" class="num">01</text>
+      <text x="178" y="786" class="h3 white">Need-to-know</text>
+      <text x="178" y="818" class="small white">Nur notwendige Informationen.</text>
+      <rect x="580" y="748" width="420" height="94" rx="20" fill="#152238" />
+      <text x="610" y="786" class="num">02</text>
+      <text x="658" y="786" class="h3 white">Freigegebener Zeitpunkt</text>
+      <text x="658" y="818" class="small white">Keine Vorabkommunikation.</text>
+      <rect x="1060" y="748" width="420" height="94" rx="20" fill="#152238" />
+      <text x="1090" y="786" class="num">03</text>
+      <text x="1138" y="786" class="h3 white">Verlässliche Quelle</text>
+      <text x="1138" y="818" class="small white">Eine abgestimmte Version.</text>
+    <text x="80" y="876" class="micro">FairTransition-Praxisstandard · Datenschutz, Arbeitsrecht und interne Governance werden fallbezogen geprüft.</text>
+  </svg>
