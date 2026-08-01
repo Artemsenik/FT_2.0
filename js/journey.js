@@ -16,7 +16,7 @@
     heroPortrait: true ,        // 01-artem-hero-portrait.webp
     officeArrivalVideo: true ,  // 02-office-arrival.webm/.mp4
     reflectionVideo: true ,     // 03-reflection.webm/.mp4
-    transitionRoomPhoto: true , // 04-empty-transition-room.webp
+    transitionRoomPhoto: false, // 04-empty-transition-room.webp
     knowledgeTransferPhoto: false, // 05-knowledge-transfer.webp
     founderClosingVideo: false, // 06-founder-closing.webm/.mp4 (+ -poster.webp)
     founderClosingPoster: true  // Poster als Standbild, bis das Video vorliegt

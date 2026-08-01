@@ -280,3 +280,10 @@ html.js .jr-seq p.in-view{opacity:1;transform:none}
   .jr-proc-compact{grid-template-columns:1fr;gap:14px}
   .jr-pc-item{padding-top:12px}
 }
+
+/* Station 4 – abrundende Botschaft */
+.jr-lesson{max-width:640px;margin:40px auto 0;text-align:center;
+  border-top:1px solid #d8dde4;padding-top:26px}
+.jr-lesson-label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ochre-ink,#7E6130);margin-bottom:12px}
+.jr-lesson p{font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.7;color:#2b3442;margin:0}
