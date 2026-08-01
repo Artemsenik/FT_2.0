@@ -4,4 +4,4 @@ Disallow: /impressum.html
 Disallow: /datenschutz.html
 Disallow: /404.html
 
-Sitemap: https://fairtransition.ch/sitemap.xml
+Sitemap: https://www.fairtransition.ch/sitemap.xml

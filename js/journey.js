@@ -17,7 +17,7 @@
     officeArrivalVideo: true ,  // 02-office-arrival.webm/.mp4
     reflectionVideo: true ,     // 03-reflection.webm/.mp4
     transitionRoomPhoto: true , // 04-empty-transition-room.webp
-    knowledgeTransferPhoto: true , // 05-knowledge-transfer.webp
+    knowledgeTransferPhoto: false, // 05-knowledge-transfer.webp
     founderClosingVideo: false, // 06-founder-closing.webm/.mp4 (+ -poster.webp)
     founderClosingPoster: true  // Poster als Standbild, bis das Video vorliegt
   };

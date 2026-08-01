@@ -6,7 +6,7 @@
    ══════════════════════════════════════════════════════════════ */
 
 /* ── Grundrhythmus der Stationen ── */
-.jr-station{padding:clamp(72px,12vh,140px) 20px;position:relative}
+.jr-station{padding:clamp(52px,8vh,96px) 20px;position:relative}
 .jr-station .container{max-width:1080px}
 .jr-narrow{max-width:720px;margin-inline:auto}
 .jr-eyebrow{display:block;font-size:.78rem;font-weight:700;letter-spacing:.16em;
@@ -79,7 +79,7 @@ body.jr-hide-guides .jr-ph-notes{display:none}
 .jr-story-grid{display:grid;grid-template-columns:minmax(300px,.9fr) minmax(0,1fr);
   gap:clamp(28px,5vw,72px);align-items:start}
 .jr-sticky{position:sticky;top:96px}
-.jr-seq{display:flex;flex-direction:column;gap:min(22vh,190px);padding:8vh 0 6vh}
+.jr-seq{display:flex;flex-direction:column;gap:min(15vh,130px);padding:5vh 0 4vh}
 .jr-seq p{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.5;font-weight:600;max-width:420px}
 html.js .jr-seq p{opacity:.5;transform:translateY(10px);
   transition:opacity .5s ease,transform .5s ease}
@@ -144,7 +144,7 @@ html.js .jr-seq p.in-view{opacity:1;transform:none}
   background:linear-gradient(#d8dde4,#d8dde4)}
 .jr-proc-line{position:absolute;left:14px;top:6px;width:2px;background:var(--ochre);
   height:0;transition:height .5s linear}
-.jr-step{position:relative;padding-bottom:44px}
+.jr-step{position:relative;padding-bottom:32px}
 .jr-step:last-child{padding-bottom:0}
 .jr-step::before{content:"";position:absolute;left:-35px;top:4px;width:16px;height:16px;
   border-radius:50%;background:var(--white);border:3px solid #c3cad4;transition:border-color .4s}
@@ -261,4 +261,22 @@ html.js .jr-seq p.in-view{opacity:1;transform:none}
   .ft-clarity-echo .ft-clarity-grid{display:grid;grid-template-columns:1fr;gap:18px}
   .ft-clarity-echo .ft-clarity-item{padding-top:10px}
   .ft-clarity-echo .ft-clarity-item p{font-size:.9rem}
+}
+
+/* Station 7 – kompakte Prozessreihe (Detail auf ablauf.html) */
+.jr-proc-compact{list-style:none;margin:32px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,22px)}
+.jr-pc-item{position:relative;padding-top:16px;border-top:2px solid #d8dde4;
+  display:flex;flex-direction:column;gap:5px}
+.jr-pc-item:first-child{border-top-color:var(--ochre)}
+.jr-pc-n{font-family:ui-monospace,monospace;font-size:.78rem;color:var(--ochre-ink,#7E6130);
+  font-weight:700;letter-spacing:.08em}
+.jr-pc-item strong{font-size:.98rem;line-height:1.3;color:#1c2a44}
+.jr-pc-item span:last-child{font-size:.85rem;line-height:1.5;color:var(--gray)}
+@media (max-width:900px){
+  .jr-proc-compact{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:520px){
+  .jr-proc-compact{grid-template-columns:1fr;gap:14px}
+  .jr-pc-item{padding-top:12px}
 }

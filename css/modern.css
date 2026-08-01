@@ -322,20 +322,27 @@ footer .footer-bottom, footer .footer-bottom a{color:rgba(255,255,255,.78)}
 /* ══ Loop · Bildband für Unterseiten (Bildpaket 2026-07-19) ══
    Ruhiges Vollbreiten-Bild direkt unter dem sub-hero. Editoriale
    Anmutung, dezenter Navy-Verlauf an den Kanten für Textnähe. */
-.ft-band{position:relative;width:100%;margin:0;background:#0d1626;overflow:hidden}
-.ft-band img{display:block;width:100%;height:clamp(220px,34vw,440px);
-  object-fit:cover;object-position:center}
-.ft-band::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(13,22,38,.28),transparent 22%,transparent 78%,rgba(13,22,38,.32))}
-.ft-band figcaption{position:absolute;left:0;right:0;bottom:0;
-  padding:14px clamp(20px,4vw,48px);font-size:.82rem;color:rgba(255,255,255,.82);
-  background:linear-gradient(0deg,rgba(12,21,36,.72),transparent);z-index:1}
+.ft-band{position:relative;margin:clamp(24px,4vh,44px) auto;padding-inline:20px;
+  max-width:1180px;background:transparent;overflow:visible}
+.ft-band-inner{position:relative;border-radius:clamp(14px,1.6vw,22px);overflow:hidden;
+  background:#0d1626;box-shadow:0 22px 60px rgba(10,18,32,.20)}
+.ft-band img{display:block;width:100%;aspect-ratio:16/9;height:auto;
+  object-fit:cover;object-position:center 38%}
+.ft-band-inner::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(0deg,rgba(12,21,36,.55),transparent 42%)}
+.ft-band figcaption{position:absolute;left:0;right:0;bottom:0;z-index:1;
+  padding:14px clamp(16px,2.4vw,26px);font-size:.84rem;line-height:1.5;
+  color:rgba(255,255,255,.9)}
+@media (max-width:600px){
+  .ft-band img{aspect-ratio:4/3}
+  .ft-band figcaption{font-size:.78rem;padding:12px 16px}
+}
 @media (prefers-reduced-motion:no-preference){
   @supports(animation-timeline:view()){
     .ft-band img{animation:ft-band-drift linear both;
       animation-timeline:view();animation-range:entry 0% exit 100%}
-    @keyframes ft-band-drift{from{transform:scale(1.06) translateY(-1.5%)}
-      to{transform:scale(1.06) translateY(1.5%)}}
+    @keyframes ft-band-drift{from{transform:scale(1.05) translateY(-1.2%)}
+      to{transform:scale(1.05) translateY(1.2%)}}
   }
 }
 
